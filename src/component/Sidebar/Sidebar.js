@@ -1,12 +1,12 @@
 import React from "react";
-import instagram_word from "../../assets/images/instagram_word.svg"
-import home from "../../assets/images/home.svg";
-import search from "../../assets/images/search.svg";
-import explore from "../../assets/images/explore.svg";
-import messages from "../../assets/images/messages.svg";
-import notifications from "../../assets/images/notifications.svg";
-import create from "../../assets/images/create.svg";
-import more from "../../assets/images/more.svg";
+import instagram_word from "../../assets/images/sidebar/instagram_word.svg"
+import home from "../../assets/images/sidebar/home.svg";
+import search from "../../assets/images/sidebar/search.svg";
+import explore from "../../assets/images/sidebar/explore.svg";
+import messages from "../../assets/images/sidebar/messages.svg";
+import notifications from "../../assets/images/sidebar/notifications.svg";
+import create from "../../assets/images/sidebar/create.svg";
+import more from "../../assets/images/sidebar/more.svg";
 import icon from "../../assets/images/icon.jpg"
 import "./sidebar.scss"
 
