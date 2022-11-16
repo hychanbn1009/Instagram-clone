@@ -1,0 +1,42 @@
+.sideBar {
+  border-right: 1px solid rgb(223, 223, 223);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 245px;
+  background-color: rgb(255, 255, 255);
+  box-sizing: border-box;
+  z-index: 1;
+  padding: 8px 12px 20px 12px;
+  .logo {
+    margin-top: 10px;
+    margin-bottom: 19px;
+  }
+  .menu {
+    flex: 1 0 auto;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li {
+      cursor: pointer;
+      padding: 12px;
+      margin: 8px 0 8px 0;
+      font-size: 16px;
+      line-height: 24px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      span {
+        padding-left: 16px;
+      }
+      .profile-icon {
+        border-radius: 50%;
+        height: 24px;
+      }
+    }
+  }
+}
