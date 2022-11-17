@@ -1,12 +1,18 @@
-.main {
-  background-color: rgb(250, 250, 250);
+.post-container {
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
-  align-items: center;
+  margin-right: 32px;
 }
 
 .main-container {
+  background-color: rgb(250, 250, 250);
   display: flex;
   flex-direction: row;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  justify-content: center;
 }

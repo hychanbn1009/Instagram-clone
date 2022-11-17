@@ -58,12 +58,15 @@ const Post =()=>{
                 <small className="time-stamp">
                     1 DAY AGO
                 </small>
+            </div>
+            <span className="breakline"></span>
+            <div className="post-details">
                 <div className="post-reaction-container">
                     <div className="post-reaction-left">
                         <img src={emotion} alt="emotion"/>
-                        <span>Add a comment...</span>
+                        <textarea placeholder="Add a comment..."></textarea>
                     </div>
-                    <span>Post</span>
+                    <button disabled>Post</button>
                 </div>
             </div>
         </div>
