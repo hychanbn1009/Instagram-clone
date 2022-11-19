@@ -7,7 +7,7 @@ import comment from "../../assets/images/post/comment.svg";
 import save from "../../assets/images/post/save.svg";
 import emotion from "../../assets/images/post/emotion.svg";
 import post1 from "../../assets/images/post/post1.jpg";
-import "./post.scss"
+import "./mainPagePost.scss"
 
 const Post =()=>{
     return(
