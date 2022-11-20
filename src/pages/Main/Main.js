@@ -1,27 +1,29 @@
 import React from "react";
 import Sidebar from "../../component/Sidebar/Sidebar"
-import Storybar from "../../component/Storybar/Storybar";
-import MainPagePost from "../../component/MainPagePost/MainPagePost";
-import SuggestList from "../../component/SuggestList/SuggestList";
+import MainPagePostList from "../../component/MainPagePostList/MainPagePostList";
 import ProfilePage from "../ProfilePage/ProfilePage";
-import "./main.scss"
+import "./main.scss";
+import {
+    BrowserRouter as Router,
+    Routes ,
+    Route,
+    Link,
+  } from "react-router-dom";
 
 const Main =()=>{
     return(
+        <Router>
         <div class="main-container">
             <Sidebar/>
             <div className="content-container">
-                {/* <div className="post-container">
-                    <Storybar/>
-                    <MainPagePost/>
-                    <MainPagePost/>
-                    <MainPagePost/>
-                    <MainPagePost/>
-                </div>
-                <SuggestList/> */}
-                <ProfilePage/>
+                <Routes >
+                    <Route path="/" element={<MainPagePostList/>}/>
+                    <Route path="/id" element={<ProfilePage/>}/>
+                </Routes>
             </div>
         </div>
+        </Router>
+
     )
 }
 

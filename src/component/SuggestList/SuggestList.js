@@ -8,8 +8,8 @@ const SuggestList=()=>{
             <div className="profile-container">
                 <img src={icon}/>
                 <div className="user-details">
-                    <span className="userid">kyle_chan</span>
-                    <span className="username">Kyle Chan</span>
+                    <span className="userid">user_id</span>
+                    <span className="username">User Name</span>
                 </div>
                 <button>Switch</button>
             </div>

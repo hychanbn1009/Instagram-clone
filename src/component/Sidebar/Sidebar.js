@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import instagram_word from "../../assets/images/sidebar/instagram_word.svg"
 import home from "../../assets/images/sidebar/home.svg";
 import search from "../../assets/images/sidebar/search.svg";
@@ -8,29 +8,32 @@ import notifications from "../../assets/images/sidebar/notifications.svg";
 import create from "../../assets/images/sidebar/create.svg";
 import more from "../../assets/images/sidebar/more.svg";
 import icon from "../../assets/images/icon.jpg"
+import instagram_logo from "../../assets/images/sidebar/instragram_logo.svg";
+import CreateModal from "../CreateModal/CreateModal";
 import "./sidebar.scss"
+import {Link} from "react-router-dom";
 
 const Sidebar =()=>{
+
+    const [modalShow,setModalShow]=useState(false)
+
     return(
         <div className="sideBar">
             <ul className="logo">
-            <li><img src={instagram_word} className="App-word" alt="instagram"/></li>
+            <li><img src={instagram_word} className="App-word" alt="instagram"/><img src={instagram_logo} className="App-logo" alt="instagram"/></li>
             </ul>
             <ul className="menu">
-                <div>
-                <li><img src={home} className="App-word" alt="home"/><span>Home</span></li>
-                </div>
-                <div>
-                <li><img src={search} className="App-word" alt="search"/><span>Search</span></li>
-                </div>
-                <li><img src={explore} className="App-word" alt="explore"/><span>Explore</span></li>
-                <li><img src={messages} className="App-word" alt="messages"/><span>Messages</span></li>
-                <li><img src={notifications} className="App-word" alt="notifications"/><span>Notifications</span></li>
-                <li><img src={create} className="App-word" alt="create"/><span>Create</span></li>
-                <li><img src={icon} className="profile-icon" alt="icon"/><span>Profile</span></li>
+                <Link to="/"><li><img src={home} className="side-bar-icon" alt="home"/><span>Home</span></li></Link>
+                <li><img src={search} className="side-bar-icon" alt="search"/><span>Search</span></li>
+                <li><img src={explore} className="side-bar-icon" alt="explore"/><span>Explore</span></li>
+                <li><img src={messages} className="side-bar-icon" alt="messages"/><span>Messages</span></li>
+                <li><img src={notifications} className="side-bar-icon" alt="notifications"/><span>Notifications</span></li>
+                <li onClick={()=>setModalShow(true)}><img src={create} className="side-bar-icon" alt="create"/><span>Create</span></li>
+                <CreateModal modalShow={modalShow} onClose={()=>setModalShow(false)}/>
+                <Link to="/id"><li><img src={icon} className="profile-icon" alt="icon"/><span>Profile</span></li></Link>
             </ul>
             <ul>
-                <li><img src={more} className="App-word" alt="more"/><span>More</span></li>
+                <li><img src={more} className="side-bar-icon" alt="more"/><span>More</span></li>
             </ul>
         </div> 
     )
