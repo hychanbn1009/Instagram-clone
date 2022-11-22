@@ -2,6 +2,7 @@ import React from "react";
 import Sidebar from "../../component/Sidebar/Sidebar"
 import MainPagePostList from "../../component/MainPagePostList/MainPagePostList";
 import ProfilePage from "../ProfilePage/ProfilePage";
+import ExplorePage from "../ExplorePage/ExplorePage";
 import "./main.scss";
 import {
     BrowserRouter as Router,
@@ -19,6 +20,7 @@ const Main =()=>{
                 <Routes >
                     <Route path="/" element={<MainPagePostList/>}/>
                     <Route path="/id" element={<ProfilePage/>}/>
+                    <Route path="/explore" element={<ExplorePage/>}/>
                 </Routes>
             </div>
         </div>

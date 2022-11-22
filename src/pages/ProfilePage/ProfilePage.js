@@ -12,7 +12,7 @@ const ProfilePage=()=>{
             <header className="profile">
                 <div className="profile-image">
                     <div className="profile-image-wrap">
-                        <img src={icon} />
+                        <img src={icon}/>
                     </div>
                 </div>
                 <section className="profile-details">
