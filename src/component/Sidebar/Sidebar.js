@@ -20,13 +20,13 @@ const Sidebar =()=>{
     return(
         <div className="sideBar">
             <ul className="logo">
-            <li><img src={instagram_word} className="App-word" alt="instagram"/><img src={instagram_logo} className="App-logo" alt="instagram"/></li>
+            <Link to="/"><li><img src={instagram_word} className="App-word" alt="instagram"/><img src={instagram_logo} className="App-logo" alt="instagram"/></li></Link>
             </ul>
             <ul className="menu">
                 <Link to="/"><li><img src={home} className="side-bar-icon" alt="home"/><span>Home</span></li></Link>
                 <li><img src={search} className="side-bar-icon" alt="search"/><span>Search</span></li>
                 <Link to="/explore"><li><img src={explore} className="side-bar-icon" alt="explore"/><span>Explore</span></li></Link>
-                <li><img src={messages} className="side-bar-icon" alt="messages"/><span>Messages</span></li>
+                <Link to="/direct/inbox"><li><img src={messages} className="side-bar-icon" alt="messages"/><span>Messages</span></li></Link>
                 <li><img src={notifications} className="side-bar-icon" alt="notifications"/><span>Notifications</span></li>
                 <li onClick={()=>setModalShow(true)}><img src={create} className="side-bar-icon" alt="create"/><span>Create</span></li>
                 <CreateModal modalShow={modalShow} onClose={()=>setModalShow(false)}/>

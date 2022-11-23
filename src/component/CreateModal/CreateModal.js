@@ -1,6 +1,6 @@
 import React from "react";
-import create_logo from "../../assets/images/CreateModal/create_logo.svg"
-import close from "../../assets/images/CreateModal/close.svg"
+import create_logo from "../../assets/images/createModal/create_logo.svg"
+import close from "../../assets/images/createModal/close.svg"
 import "./CreateModal.scss"
 
 const CreateModal =({modalShow,onClose})=>{
