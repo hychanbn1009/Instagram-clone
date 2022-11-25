@@ -10,7 +10,7 @@ const CreateModal =({modalShow,onClose})=>{
     return(
         <div className="create-modal" onClick={onClose} >
             <img src={close} onClick={onClose} className="modal-close-button"/>
-            <div className="modal-content">
+            <div className="modal-content" onClick={event=>event.stopPropagation()}>
                 <h1 className="modal-header">
                     Create new post
                 </h1>
