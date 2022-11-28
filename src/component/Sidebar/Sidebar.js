@@ -10,12 +10,14 @@ import more from "../../assets/images/sidebar/more.svg";
 import icon from "../../assets/images/icon.jpg"
 import instagram_logo from "../../assets/images/sidebar/instragram_logo.svg";
 import CreateModal from "../CreateModal/CreateModal";
+import DropUpMenu from "../DropUpMenu/DropUpMenu";
 import "./sidebar.scss"
 import {Link} from "react-router-dom";
 
 const Sidebar =()=>{
 
     const [modalShow,setModalShow]=useState(false)
+    const [dropUpMenuShow,setDropUpMenuShow]=useState(false)
 
     return(
         <div className="sideBar">
@@ -33,7 +35,8 @@ const Sidebar =()=>{
                 <Link to="/id"><li><img src={icon} className="profile-icon" alt="icon"/><span>Profile</span></li></Link>
             </ul>
             <ul>
-                <li><img src={more} className="side-bar-icon" alt="more"/><span>More</span></li>
+                <DropUpMenu dropUpMenuShow={dropUpMenuShow}/>
+                <li onClick={()=>setDropUpMenuShow(!dropUpMenuShow)}><img src={more} className="side-bar-icon" alt="more"/><span>More</span></li>
             </ul>
         </div> 
     )

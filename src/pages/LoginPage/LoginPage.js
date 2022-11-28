@@ -1,21 +1,65 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import "./LoginPage.scss";
-import logo from "../../assets/images/sidebar/instagram_word.svg"
+import logo from "../../assets/images/sidebar/instagram_word.svg";
+import {login} from '../../thunk/authThunk'
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate  } from "react-router-dom";
 
 const LoginPage=()=>{
+    
+    const [email,setEmail]=useState("");
+    const [password,setPassword]=useState("");
+
+    const { loading, error,token,success } = useSelector(
+        (state) => state.auth
+    )
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        try{
+            dispatch(login({email,password}))
+            navigate("/")
+        } catch(err){
+            console.log(err)
+        }
+    };
+    
     return(
         <div className="login-page">
-            <div className="login-container">
-                <img src={logo} className="logo"/>
+            <form className="login-container" onSubmit={handleSubmit}>
+                <img src={logo} className="logo" alt="app-icon"/>
                 <div className="input-field">
-                    <input type="text" name="username" placeholder=" " required/>
+                    <input 
+                    type="text" 
+                    id="email"
+                    name="email" 
+                    value={email}
+                    placeholder=" " 
+                    onChange={(event)=>{setEmail(event.target.value)}}
+                    autoCapitalize='none'
+                    required/>
                     <span>Phone number, username, or email</span>
                 </div>
                 <div className="input-field">
-                    <input type="password" name="password" placeholder=" " required/>
+                    <input 
+                    type="password" 
+                    id="password"
+                    name="password" 
+                    value={password}
+                    placeholder=" "
+                    onChange={(event)=>{setPassword(event.target.value)}}
+                    autoCapitalize='none'
+                    required
+                    />
                     <span>Password</span>
                 </div>
-                <button className="login-button">Log in</button>
+                <button 
+                className="login-button"
+                type="submit"
+                >Log in</button>
                 <div className="break-line">
                     <div></div>
                     <p>OR</p>
@@ -23,9 +67,9 @@ const LoginPage=()=>{
                 </div>
                 <div className="register-container">
                     <p>Don't have an account?&nbsp;</p>
-                    <a>Sign up</a>
+                    <a onClick={()=>navigate("/register")}>Sign up</a>
                 </div>
-            </div>
+            </form>
         </div>
     )
 }

@@ -7,34 +7,41 @@ import MessagesPage from "../MessagesPage/MessagesPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
 import LoginPage from "../LoginPage/LoginPage";
 import "./Main.scss";
-import {
-    BrowserRouter as Router,
-    Routes ,
-    Route,
-    Link,
-  } from "react-router-dom";
-
+import {Routes, Route,} from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Main =()=>{
+
+    const { token } = useSelector(
+        (state) => state.auth
+    )
+
     return(
-        <Router>
-        <div class="main-container">
-            <Sidebar/>
+        <div class="main-container"> 
+            {token?<Sidebar/>:null}
             <div className="content-container">
-                <Routes >
+                {token?
+                ( 
+                <>
+                <Routes>
                     <Route path="/" element={<MainPagePostList/>}/>
                     <Route path="/id" element={<ProfilePage/>}/>
                     <Route path="/explore" element={<ExplorePage/>}/>
                     <Route path="/direct/inbox" element={<MessagesPage/>}/>
                     <Route path="/direct/inbox" element={<MessagesPage/>}/>
+                    <Route path="*" element={<p>Path not resolved</p>} />
+                </Routes>
+                </>
+
+                ):
+                (
+                <Routes>
                     <Route path="/login" element={<LoginPage/>}/>
                     <Route path="/register" element={<RegisterPage/>}/>
                 </Routes>
+                )}
             </div>
-
         </div>
-        </Router>
-
     )
 }
 
