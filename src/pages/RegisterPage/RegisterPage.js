@@ -19,15 +19,20 @@ const RegisterPage=()=>{
     const [username,setUsername]=useState("");
     const [password,setPassword]=useState("");
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async(event) => {
         event.preventDefault();
-        dispatch(register({email,password}));
+        try{
+            dispatch(register({email,fullname,username,password}))
+            navigate("/")
+        } catch(err){
+            console.log(err)
+        }
     };
 
     return(
         <div className="register-page">
             <form className="register-container" onSubmit={handleSubmit}>
-                <img src={logo} className="logo"/>
+                <img src={logo} className="logo" alt="app-logo"/>
                 <h2>Sign up to see photos and videos from your friends.</h2>
                 <div className="break-line">
                     <div></div>
@@ -53,7 +58,6 @@ const RegisterPage=()=>{
                     value={fullname}
                     onChange={(event)=>{setFullname(event.target.value)}}
                     autoCapitalize='none'
-                    autoCorrect={false}
                     placeholder=" " 
                     required/>
                     <span>Full Name</span>
@@ -66,7 +70,6 @@ const RegisterPage=()=>{
                     value={username}
                     onChange={(event)=>{setUsername(event.target.value)}}
                     autoCapitalize='none'
-                    autoCorrect={false}
                     placeholder=" " 
                     required/>
                     <span>Username</span>
@@ -79,16 +82,17 @@ const RegisterPage=()=>{
                     value={password}
                     onChange={(event)=>{setPassword(event.target.value)}}
                     autoCapitalize='none'
-                    autoCorrect={false}
                     placeholder=" " 
                     required/>
                     <span>Password</span>
                 </div>
+                {loading?
+                <span class="loader"></span>:
                 <button 
                 className="login-button"
                 type="submit"
-                >Sign up</button>
-                {error?<p>error</p>:null}
+                >Sign up</button>}
+                {error?<p className="error-message">{error}</p>:null}
                 <div className="login-container">
                     <p>Have an account?&nbsp;</p>
                     <a onClick={()=>navigate("/login")}>Log in</a>

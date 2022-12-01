@@ -56,15 +56,18 @@ const LoginPage=()=>{
                     />
                     <span>Password</span>
                 </div>
-                <button 
+                {loading?
+                <span class="loader"></span>
+                :<button 
                 className="login-button"
                 type="submit"
-                >Log in</button>
+                >Log in</button>}
                 <div className="break-line">
                     <div></div>
                     <p>OR</p>
                     <div></div>
                 </div>
+                {error?<p className="error-message">{error}</p>:null}
                 <div className="register-container">
                     <p>Don't have an account?&nbsp;</p>
                     <a onClick={()=>navigate("/register")}>Sign up</a>
