@@ -1,12 +1,29 @@
-import React from "react";
-import create_logo from "../../assets/images/createModal/create_logo.svg"
+import React,{useState} from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import { submit } from "../../thunk/postThunk";
 
 const PreviewModalBody=({photoLink,setPhotoLink,step,setStep,postContent,setPostContent})=>{
 
-    const imageError=(image)=>{
-        image.onerror="";
-        image.src=""
-    }
+    const [errorMessageShake,setErrorMessageShake]=useState(false);
+    const [errorMessage,setErrorMessage]=useState("");
+
+    const { loading, error } = useSelector(
+        (state) => state.post
+    )
+    const dispatch = useDispatch();
+
+    const handleSubmit = async() => {
+        if(!postContent){
+            try{
+                dispatch(submit({photoLink,postContent}))
+                setStep(step+1)
+            } catch(err){
+                setErrorMessage(err)
+            }
+        }else{
+            setErrorMessage("Post content cannot be empty!")
+        }
+    };
 
     return(
         <>
@@ -14,17 +31,24 @@ const PreviewModalBody=({photoLink,setPhotoLink,step,setStep,postContent,setPost
                 Preview Your Post
             </h1>
             <div className="preview-modal-body">
-                <img src={photoLink} onError="No Image" alt="preview-image" className="preview-image"/>
+                <img src={photoLink} alt="preview" className="preview-image"/>
                 <textarea 
                 placeholder="Write a caption..."
                 autoComplete="off"
                 autoCorrect="off"
                 onChange={(event)=>setPostContent(event.target.value)}
                 />
-                {console.log(postContent)}
+                {loading?<span class="loader"></span>:null}
+                {errorMessage?
+                <span className="error-message" 
+                id={errorMessageShake?"shaking":null}
+                onAnimationEnd={()=>setErrorMessageShake(false)}
+                >
+                {errorMessage}
+                </span>:null}
                 <div className="btn-group">
                     <button onClick={()=>setStep(step-1)}>Back</button>
-                    <button onClick={()=>setStep(step+1)}>Submit</button>
+                    <button onClick={()=>handleSubmit({photoLink,postContent})}>Submit</button>
                 </div>
             </div>
         </>

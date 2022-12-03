@@ -10,7 +10,8 @@ export const login = createAsyncThunk(
     async ({ email, password },thunkAPI)=>{
       try{
         const response = await backendApi.post('/signin', {email, password});
-        setToken(response.data.accessToken);
+        console.log(response)
+        setToken(response.data.token);
         return response.data;
       } catch(err){
         return 'Something went wrong with sign in'
@@ -24,7 +25,7 @@ export const register = createAsyncThunk(
     console.log('register')
     try{
       const response = await backendApi.post('/signup', {email, password});
-      setToken(response.data.accessToken);
+      setToken(response.data.token);
       return response.data;
     } catch(err){
       return 'Something went wrong with sign up'

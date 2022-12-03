@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from "react";
+import React,{useState} from "react";
 import "./LoginPage.scss";
 import logo from "../../assets/images/sidebar/instagram_word.svg";
 import {login} from '../../thunk/authThunk'

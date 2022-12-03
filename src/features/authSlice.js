@@ -2,9 +2,13 @@ import { createSlice} from '@reduxjs/toolkit';
 import {login, register} from '../thunk/authThunk';
 
 const token = localStorage.getItem('token')?localStorage.getItem('token'):null;
+const userId = localStorage.getItem('userId')?localStorage.getItem('userId'):null;
+const username = localStorage.getItem('username')?localStorage.getItem('username'):null;
+
 
 const initialState= {
-  user:null,
+  userId,
+  username,
   token,
   loading: false,
   success: false,
@@ -18,6 +22,8 @@ const authSlice  = createSlice({
     logout:(state)=>{
       console.log('Logout!')
       localStorage.removeItem('token')
+      localStorage.removeItem('userId')
+      localStorage.removeItem('username')
       state.loading=false
       state.token=null
       state.errorMessage=null
@@ -26,10 +32,10 @@ const authSlice  = createSlice({
   // dealing with an action that already defined in createAsyncThunk 
   extraReducers:{
     [login.fulfilled]: (state, action) => {
-      const {token, user} = action.payload;
-      console.log(action)
+      const {token, userId,username} = action.payload;
       state.token = token;
-      state.user = user;
+      state.userId = userId;
+      state.username = username;
       state.loading = false;
       state.success = true;
     },
@@ -38,12 +44,13 @@ const authSlice  = createSlice({
     },
     [login.rejected]: (state, action) => {
       state.loading = false
-      state.error = action.payload
+      state.errorMessage = action.payload
     },
     [register.fulfilled]: (state, action) => {
-      const {token, user} = action.payload;
+      const {token, userId,username} = action.payload;
       state.token = token;
-      state.user = user;
+      state.userId = userId;
+      state.username = username;
       state.loading = false;
       state.success = true;
     },
@@ -52,7 +59,7 @@ const authSlice  = createSlice({
     },
     [register.rejected]: (state, action) => {
       state.loading = false
-      state.error = action.payload
+      state.errorMessage = action.payload
     },
   }
 });
