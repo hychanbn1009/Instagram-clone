@@ -7,9 +7,42 @@ import comment from "../../assets/images/post/comment.svg";
 import save from "../../assets/images/post/save.svg";
 import emotion from "../../assets/images/post/emotion.svg";
 import post1 from "../../assets/images/post/post1.jpg";
+import dayjs from "dayjs";
 import "./mainPagePost.scss"
+const relativeTime = require('dayjs/plugin/relativeTime');
 
-const Post =()=>{
+const Post =({username,photoLink,postContent,timestamp})=>{
+
+    dayjs.extend(relativeTime)
+
+    function timeSince(date) {
+
+        var seconds = Math.floor((new Date() - date) / 1000);
+      
+        var interval = seconds / 31536000;
+      
+        if (interval > 1) {
+          return Math.floor(interval) + " years";
+        }
+        interval = seconds / 2592000;
+        if (interval > 1) {
+          return Math.floor(interval) + " months";
+        }
+        interval = seconds / 86400;
+        if (interval > 1) {
+          return Math.floor(interval) + " days";
+        }
+        interval = seconds / 3600;
+        if (interval > 1) {
+          return Math.floor(interval) + " hours";
+        }
+        interval = seconds / 60;
+        if (interval > 1) {
+          return Math.floor(interval) + " minutes";
+        }
+        return Math.floor(seconds) + " seconds";
+      }
+
     return(
         <div className="post">
             <div className="post-header">
@@ -18,7 +51,7 @@ const Post =()=>{
                 </div>
                 <div className="post-writer-info">
                     <span className="username">
-                        username
+                        {username}
                     </span>
                     <span className="location">
                         location
@@ -26,7 +59,7 @@ const Post =()=>{
                 </div>
                 <img src={dotdotdot} className="more-icon" alt="more"/>
             </div>
-            <img src={post1} className="post-photo" alt="post"/>
+            <img src={photoLink} className="post-photo" alt="post"/>
             <div className="post-details">
                 <div className="post-reaction-list">
                     <div className="post-reaction-left">
@@ -51,12 +84,12 @@ const Post =()=>{
                     <span>
                         username
                     </span>
-                    &nbsp;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    &nbsp;{postContent}
                 </div>
                 <div className="post-comments">
                 </div>
                 <small className="time-stamp">
-                    1 DAY AGO
+                    {dayjs(timestamp).fromNow()}
                 </small>
             </div>
             <span className="breakline"></span>

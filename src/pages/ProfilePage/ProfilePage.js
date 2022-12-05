@@ -1,12 +1,32 @@
-import React from "react";
+import React,{useEffect} from "react";
 import icon from "../../assets/images/icon.jpg"
 import dotdotdot from "../../assets/images/post/dotdotdot.svg"
 import friendsSuggestion from "../../assets/images/profilePage/friendSuggestion.svg"
 import post1 from "../../assets/images/post/post1.jpg";
 import ProfilePagePost from "../../component/ProfilePagePost/ProfilePagePost";
+import { useSelector, useDispatch } from 'react-redux';
+import {profile} from '../../thunk/postThunk';
 import "./ProfilePage.scss"
 
 const ProfilePage=()=>{
+
+    const {posts} = useSelector(
+        (state) => state.post
+    )
+
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        const fetchData =async()=>{
+            try{
+                dispatch(profile())
+            }catch(err){
+                console.log(err)
+            }
+        }
+        fetchData()
+    },[dispatch])
+
     return(
         <div className="profile-page">
             <header className="profile">

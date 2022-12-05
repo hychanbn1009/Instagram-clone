@@ -176,20 +176,6 @@
     animation: shake 0.5s;
   }
 
-  .loader {
-    display: block;
-    color: rgb(38, 38, 38);
-    font-size: 45px;
-    text-indent: -9999em;
-    overflow: hidden;
-    width: 1em;
-    height: 1em;
-    border-radius: 50%;
-    position: relative;
-    transform: translateZ(0);
-    animation: mltShdSpin 1.7s infinite ease, round 1.7s infinite ease;
-  }
-
   .wrapper {
     height: 100vh;
     display: flex;
@@ -243,6 +229,19 @@
     100% {
       box-shadow: inset 0px 0px 0px 30px #7ac142;
     }
+  }
+  .loader {
+    display: block;
+    color: rgb(38, 38, 38);
+    font-size: 45px;
+    text-indent: -9999em;
+    overflow: hidden;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    position: relative;
+    transform: translateZ(0);
+    animation: mltShdSpin 1.7s infinite ease, round 1.7s infinite ease;
   }
 
   @keyframes mltShdSpin {

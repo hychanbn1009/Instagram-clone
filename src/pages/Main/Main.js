@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import Sidebar from "../../component/Sidebar/Sidebar"
 import MainPagePostList from "../../component/MainPagePostList/MainPagePostList";
 import ProfilePage from "../ProfilePage/ProfilePage";
@@ -8,7 +8,8 @@ import RegisterPage from "../RegisterPage/RegisterPage";
 import LoginPage from "../LoginPage/LoginPage";
 import "./Main.scss";
 import {Routes, Route,} from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from 'react-redux';
+import {get} from '../../thunk/postThunk';
 
 const Main =()=>{
 
@@ -25,7 +26,7 @@ const Main =()=>{
                 <>
                 <Routes>
                     <Route path="/" element={<MainPagePostList/>}/>
-                    <Route path="/id" element={<ProfilePage/>}/>
+                    <Route path="/profile" element={<ProfilePage/>}/>
                     <Route path="/explore" element={<ExplorePage/>}/>
                     <Route path="/direct/inbox" element={<MessagesPage/>}/>
                     <Route path="/direct/inbox" element={<MessagesPage/>}/>

@@ -12,3 +12,28 @@ export const submit = createAsyncThunk(
       }
     }
 )
+
+export const get = createAsyncThunk(
+  'post/get',
+  async (thunkAPI)=>{
+    try{
+      const response = await backendApi.get('/');
+      return response;
+    } catch(err){
+      return 'Something went wrong with get'
+    }
+  }
+)
+
+export const profile = createAsyncThunk(
+  'post/profile',
+  async (thunkAPI)=>{
+    console.log('get profile')
+    try{
+      const response = await backendApi.get('/profile');
+      return response;
+    } catch(err){
+      return 'Something went wrong with profile'
+    }
+  }
+)
