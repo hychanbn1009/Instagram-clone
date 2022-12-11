@@ -27,6 +27,11 @@ const authSlice  = createSlice({
       state.loading=false
       state.token=null
       state.errorMessage=null
+    },
+    clearState:(state)=>{
+      state.loading=false
+      state.token=null
+      state.errorMessage=null
     }
   },
   // dealing with an action that already defined in createAsyncThunk 
@@ -38,9 +43,11 @@ const authSlice  = createSlice({
       state.username = username;
       state.loading = false;
       state.success = true;
+      return state
     },
     [login.pending]: (state, action) => {
       state.loading = true
+      state.error = null
     },
     [login.rejected]: (state, action) => {
       state.loading = false
@@ -56,6 +63,7 @@ const authSlice  = createSlice({
     },
     [register.pending]: (state, action) => {
       state.loading = true
+      state.error = null
     },
     [register.rejected]: (state, action) => {
       state.loading = false
@@ -64,5 +72,5 @@ const authSlice  = createSlice({
   }
 });
 
-export const { logout } = authSlice.actions
+export const { logout,clearState } = authSlice.actions
 export default authSlice.reducer

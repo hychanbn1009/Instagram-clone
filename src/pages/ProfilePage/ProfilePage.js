@@ -6,26 +6,33 @@ import post1 from "../../assets/images/post/post1.jpg";
 import ProfilePagePost from "../../component/ProfilePagePost/ProfilePagePost";
 import { useSelector, useDispatch } from 'react-redux';
 import {profile} from '../../thunk/postThunk';
+import {useLocation} from 'react-router-dom';
 import "./ProfilePage.scss"
 
-const ProfilePage=()=>{
+const ProfilePage=({username})=>{
 
-    const {posts} = useSelector(
+    const location = useLocation();
+    if (!username){
+        username=location.pathname.slice(1)
+    }
+
+    const {profilePosts} = useSelector(
         (state) => state.post
     )
 
     const dispatch = useDispatch();
 
     useEffect(()=>{
+        console.log(username)
         const fetchData =async()=>{
             try{
-                dispatch(profile())
+                dispatch(profile({username}))
             }catch(err){
                 console.log(err)
             }
         }
         fetchData()
-    },[dispatch])
+    },[dispatch,username])
 
     return(
         <div className="profile-page">
@@ -48,12 +55,15 @@ const ProfilePage=()=>{
                         <li><a>12 </a>followers</li>
                         <li><a>13 </a>following</li>
                     </ul>
-                    <span className="username">Username</span>
+                    <span className="username">{username}</span>
                     <span className="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
                     <a className="followed-by">Followed by</a>
                 </section>
             </header>
-            <ProfilePagePost/>
+            {profilePosts?profilePosts.map(post=>{
+                return <ProfilePagePost likes={post.likes} photoLink={post.photoLink}/>
+            }):<div className="loader"></div>
+            }
         </div>
     )
 }

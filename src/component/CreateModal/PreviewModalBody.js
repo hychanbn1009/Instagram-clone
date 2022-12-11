@@ -13,7 +13,7 @@ const PreviewModalBody=({photoLink,setPhotoLink,step,setStep,postContent,setPost
     const dispatch = useDispatch();
 
     const handleSubmit = async() => {
-        if(!postContent){
+        if(postContent){
             try{
                 dispatch(submit({photoLink,postContent}))
                 setStep(step+1)

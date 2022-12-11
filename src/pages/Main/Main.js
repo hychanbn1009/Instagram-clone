@@ -13,7 +13,7 @@ import {get} from '../../thunk/postThunk';
 
 const Main =()=>{
 
-    const { token } = useSelector(
+    const { token,username } = useSelector(
         (state) => state.auth
     )
 
@@ -31,6 +31,8 @@ const Main =()=>{
                     <Route path="/direct/inbox" element={<MessagesPage/>}/>
                     <Route path="/direct/inbox" element={<MessagesPage/>}/>
                     <Route path="*" element={<p>Path not resolved</p>} />
+                    <Route path="/profile" element={<ProfilePage username={username}/>} />
+                    <Route path="/:username" element={<ProfilePage/>} />
                 </Routes>
                 </>
 

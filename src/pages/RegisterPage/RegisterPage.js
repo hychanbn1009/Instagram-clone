@@ -1,33 +1,47 @@
-import React,{useState} from "react";
+import React,{useEffect, useState} from "react";
 import "./RegisterPage.scss";
 import logo from "../../assets/images/sidebar/instagram_word.svg"
 import { useSelector, useDispatch } from 'react-redux';
 import { register } from "../../thunk/authThunk";
 import { useNavigate } from "react-router-dom";
+import { clearState } from "../../features/authSlice";
 
 const RegisterPage=()=>{
 
-    const { loading, error } = useSelector(
-        (state) => state.auth
-    )
-
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    const { loading, errorMessage,success} = useSelector(
+        (state) => state.auth
+    )
 
     const [email,setEmail]=useState("");
     const [fullname,setFullname]=useState("");
     const [username,setUsername]=useState("");
     const [password,setPassword]=useState("");
+    const [errorMessageShake,setErrorMessageShake]=useState(false);
 
     const handleSubmit = async(event) => {
+        dispatch(clearState())
         event.preventDefault();
+        setErrorMessageShake(true);
         try{
-            dispatch(register({email,fullname,username,password}))
-            navigate("/")
+            const response = dispatch(register({email,fullname,username,password}))
         } catch(err){
-            console.log(err)
+            navigate("/register")
         }
     };
+
+    useEffect(()=>{
+        if(success){
+            navigate("/")
+        }
+    },[navigate,success])
+
+    const navigateSignIn=()=>{
+        navigate("/login")
+        dispatch(clearState())
+    }
 
     return(
         <div className="register-page">
@@ -92,7 +106,11 @@ const RegisterPage=()=>{
                 className="login-button"
                 type="submit"
                 >Sign up</button>}
-                {error?<p className="error-message">{error}</p>:null}
+                {errorMessage?<p
+                id={errorMessageShake?"shaking":null}
+                onAnimationEnd={()=>setErrorMessageShake(false)}
+                className="error-message"
+                >{errorMessage}</p>:null}
                 <div className="login-container">
                     <p>Have an account?&nbsp;</p>
                     <a onClick={()=>navigate("/login")}>Log in</a>

@@ -4,28 +4,37 @@ import logo from "../../assets/images/sidebar/instagram_word.svg";
 import {login} from '../../thunk/authThunk'
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate  } from "react-router-dom";
+import { clearState } from "../../features/authSlice";
 
 const LoginPage=()=>{
-    
-    const [email,setEmail]=useState("");
-    const [password,setPassword]=useState("");
-
-    const { loading, error,token,success } = useSelector(
-        (state) => state.auth
-    )
-
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    const [email,setEmail]=useState("");
+    const [password,setPassword]=useState("");
+    const [errorMessageShake,setErrorMessageShake]=useState(false);
+
+    const { loading, errorMessage,token,success } = useSelector(
+        (state) => state.auth
+    )
+
     const handleSubmit = (event) => {
+        dispatch(clearState())
         event.preventDefault();
+        setErrorMessageShake(true)
         try{
-            dispatch(login({email,password}))
+            const response = dispatch(login({email,password}))
+            console.log(response)
             navigate("/")
         } catch(err){
             console.log(err)
         }
     };
+
+    const navigateSignUp=()=>{
+        navigate("/register")
+        dispatch(clearState())
+    }
     
     return(
         <div className="login-page">
@@ -67,10 +76,14 @@ const LoginPage=()=>{
                     <p>OR</p>
                     <div></div>
                 </div>
-                {error?<p className="error-message">{error}</p>:null}
+                {errorMessage?<p 
+                id={errorMessageShake?"shaking":null}
+                onAnimationEnd={()=>setErrorMessageShake(false)}
+                className="error-message"
+                >{errorMessage}</p>:null}
                 <div className="register-container">
                     <p>Don't have an account?&nbsp;</p>
-                    <a onClick={()=>navigate("/register")}>Sign up</a>
+                    <a onClick={()=>navigateSignUp()}>Sign up</a>
                 </div>
             </form>
         </div>

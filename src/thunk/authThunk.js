@@ -7,28 +7,35 @@ const setToken = (val) => {
 
 export const login = createAsyncThunk(
     'auth/login',
-    async ({ email, password },thunkAPI)=>{
+    async ({ email, password },{ rejectWithValue })=>{
       try{
         const response = await backendApi.post('/signin', {email, password});
-        console.log(response)
         setToken(response.data.token);
         return response.data;
       } catch(err){
-        return 'Something went wrong with sign in'
+        if (err.response && err.response.data.message) {
+          return rejectWithValue(err.response.data.message)
+        } else {
+          return rejectWithValue(err.message)
+        }
       }
     }
 )
 
 export const register = createAsyncThunk(
   'auth/register',
-  async ({ email, password },thunkAPI)=>{
+  async ({ email, password },{ rejectWithValue })=>{
     console.log('register')
     try{
       const response = await backendApi.post('/signup', {email, password});
       setToken(response.data.token);
       return response.data;
     } catch(err){
-      return 'Something went wrong with sign up'
+      if (err.response && err.response.data.message) {
+        return rejectWithValue(err.response.data.message)
+      } else {
+        return rejectWithValue(err.message)
+      }
     }
   }
 )

@@ -9,39 +9,13 @@ import emotion from "../../assets/images/post/emotion.svg";
 import post1 from "../../assets/images/post/post1.jpg";
 import dayjs from "dayjs";
 import "./mainPagePost.scss"
+import { useNavigate } from "react-router-dom";
 const relativeTime = require('dayjs/plugin/relativeTime');
 
 const Post =({username,photoLink,postContent,timestamp})=>{
 
     dayjs.extend(relativeTime)
-
-    function timeSince(date) {
-
-        var seconds = Math.floor((new Date() - date) / 1000);
-      
-        var interval = seconds / 31536000;
-      
-        if (interval > 1) {
-          return Math.floor(interval) + " years";
-        }
-        interval = seconds / 2592000;
-        if (interval > 1) {
-          return Math.floor(interval) + " months";
-        }
-        interval = seconds / 86400;
-        if (interval > 1) {
-          return Math.floor(interval) + " days";
-        }
-        interval = seconds / 3600;
-        if (interval > 1) {
-          return Math.floor(interval) + " hours";
-        }
-        interval = seconds / 60;
-        if (interval > 1) {
-          return Math.floor(interval) + " minutes";
-        }
-        return Math.floor(seconds) + " seconds";
-      }
+    const navigate = useNavigate();
 
     return(
         <div className="post">
@@ -50,7 +24,7 @@ const Post =({username,photoLink,postContent,timestamp})=>{
                     <img src={icon} className="user-icon" alt="user-icon"/>
                 </div>
                 <div className="post-writer-info">
-                    <span className="username">
+                    <span className="username" onClick={()=>{navigate(`/${username}`)}}>
                         {username}
                     </span>
                     <span className="location">
