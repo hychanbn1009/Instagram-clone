@@ -12,6 +12,12 @@ const postSlice  = createSlice({
   name: 'post',
   initialState,
   reducers:{
+    clearState:(state)=>{
+      state.loading=false
+      state.success=false
+      state.posts=[]
+      state.errorMessage=null
+    }
   },
   // dealing with an action that already defined in createAsyncThunk 
   extraReducers:{
@@ -54,5 +60,5 @@ const postSlice  = createSlice({
   }
 });
 
-export const {} = postSlice.actions
+export const {clearState} = postSlice.actions
 export default postSlice.reducer

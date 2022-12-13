@@ -27,10 +27,11 @@ export const get = createAsyncThunk(
 
 export const profile = createAsyncThunk(
   'post/profile',
-  async ({username},thunkAPI)=>{
+  async ({user},thunkAPI)=>{
     console.log('get profile')
     try{
-      const response = await backendApi.get(`/${username}`);
+      console.log(user)
+      const response = await backendApi.get(`/${user}`);
       console.log(response)
       return response;
     } catch(err){

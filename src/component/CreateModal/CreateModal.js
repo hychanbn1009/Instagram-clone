@@ -3,6 +3,7 @@ import close from "../../assets/images/createModal/close.svg"
 import InputModalBody from "./InputModalBody";
 import PreviewModalBody from "./PreviewModalBody";
 import SuccessModalBody from "./SuccessModalBody";
+import PostModal from "../PostModal/PostModal";
 import "./CreateModal.scss"
 
 const CreateModal =({modalShow,onClose})=>{
@@ -41,6 +42,7 @@ const CreateModal =({modalShow,onClose})=>{
             <img src={close} onClick={closeModal} className="modal-close-button" alt="close-button"/>
             <div className="modal-content" onClick={event=>event.stopPropagation()}>
                 {changeStep(step,setStep,photoLink,setPhotoLink)}
+                {/* <PostModal/> */}
             </div>
         </div>
     )

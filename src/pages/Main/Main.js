@@ -10,6 +10,7 @@ import "./Main.scss";
 import {Routes, Route,} from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import {get} from '../../thunk/postThunk';
+import PostDetailPage from "../PostDetailPage/PostDetailPage";
 
 const Main =()=>{
 
@@ -32,7 +33,8 @@ const Main =()=>{
                     <Route path="/direct/inbox" element={<MessagesPage/>}/>
                     <Route path="*" element={<p>Path not resolved</p>} />
                     <Route path="/profile" element={<ProfilePage username={username}/>} />
-                    <Route path="/:username" element={<ProfilePage/>} />
+                    <Route path="/:username" element={<ProfilePage/>}>
+                    </Route>
                 </Routes>
                 </>
 
