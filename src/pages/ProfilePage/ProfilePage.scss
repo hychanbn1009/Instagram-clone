@@ -116,6 +116,14 @@
     border-bottom: 1px solid rgb(219, 219, 219);
     margin-bottom: 20px;
   }
+
+  .profile-post-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 28px;
+    grid-row-gap: 28px;
+  }
+
   .username {
     font-size: 16px;
     font-weight: 600;

@@ -26,7 +26,7 @@ const Sidebar =()=>{
 
     return(
         <>
-        <CreateModal modalShow={modalShow} onClose={()=>setModalShow(false)}/>
+        <CreateModal modalShow={modalShow} path="create" onClose={()=>setModalShow(false)} />
         <div className="sideBar">
             <ul className="logo">
             <Link to="/"><li><img src={instagram_word} className="App-word" alt="instagram"/><img src={instagram_logo} className="App-logo" alt="instagram"/></li></Link>

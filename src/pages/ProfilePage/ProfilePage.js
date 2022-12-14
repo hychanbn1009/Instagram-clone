@@ -4,6 +4,7 @@ import dotdotdot from "../../assets/images/post/dotdotdot.svg"
 import friendsSuggestion from "../../assets/images/profilePage/friendSuggestion.svg"
 import post1 from "../../assets/images/post/post1.jpg";
 import ProfilePagePost from "../../component/ProfilePagePost/ProfilePagePost";
+import CreateModal from "../../component/CreateModal/CreateModal";
 import { useSelector, useDispatch } from 'react-redux';
 import {profile} from '../../thunk/postThunk';
 import {useLocation} from 'react-router-dom';
@@ -16,6 +17,7 @@ const ProfilePage=({username})=>{
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [currentUser,setCurrentUser]=useState(null);
+    const [modalShow,setModalShow]=useState(false)
 
     const location = useLocation();
 
@@ -70,9 +72,11 @@ const ProfilePage=({username})=>{
                     </section>
                 </header>
                 {console.log(profilePosts)}
-                {profilePosts?profilePosts.map(post=>{
-                return <ProfilePagePost likes={post.likes} photoLink={post.photoLink} postId={post._id} currentUser={currentUser}/>
-                }):null}
+                <main className="profile-post-list">
+                    {profilePosts?profilePosts.map(post=>{
+                    return <ProfilePagePost likes={post.likes} photoLink={post.photoLink} postId={post._id} currentUser={currentUser}/>
+                    }):null}
+                </main>
             </div>
             }
         </div>

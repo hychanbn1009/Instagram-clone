@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React,{useState} from "react";
 import Sidebar from "../../component/Sidebar/Sidebar"
 import MainPagePostList from "../../component/MainPagePostList/MainPagePostList";
 import ProfilePage from "../ProfilePage/ProfilePage";
@@ -6,11 +6,11 @@ import ExplorePage from "../ExplorePage/ExplorePage";
 import MessagesPage from "../MessagesPage/MessagesPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
 import LoginPage from "../LoginPage/LoginPage";
+import CreateModal from "../../component/CreateModal/CreateModal";
 import "./Main.scss";
-import {Routes, Route,} from "react-router-dom";
-import { useSelector, useDispatch } from 'react-redux';
+import {Routes, Route } from "react-router-dom";
+import { useSelector } from 'react-redux';
 import {get} from '../../thunk/postThunk';
-import PostDetailPage from "../PostDetailPage/PostDetailPage";
 
 const Main =()=>{
 
@@ -33,8 +33,8 @@ const Main =()=>{
                     <Route path="/direct/inbox" element={<MessagesPage/>}/>
                     <Route path="*" element={<p>Path not resolved</p>} />
                     <Route path="/profile" element={<ProfilePage username={username}/>} />
-                    <Route path="/:username" element={<ProfilePage/>}>
-                    </Route>
+                    <Route path="/:username" element={<ProfilePage/>}/>
+                    <Route path="/:username/:postId" element={<ProfilePage/>}/>
                 </Routes>
                 </>
 
