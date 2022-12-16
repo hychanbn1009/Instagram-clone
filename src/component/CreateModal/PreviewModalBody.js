@@ -30,12 +30,14 @@ const PreviewModalBody=({photoLink,setPhotoLink,step,setStep,postContent,setPost
             <h1 className="modal-header">
                 Preview Your Post
             </h1>
+            {console.log(postContent)}
             <div className="preview-modal-body">
                 <img src={photoLink} alt="preview" className="preview-image"/>
                 <textarea 
                 placeholder="Write a caption..."
                 autoComplete="off"
                 autoCorrect="off"
+                value={postContent}
                 onChange={(event)=>setPostContent(event.target.value)}
                 />
                 {loading?<span class="loader"></span>:null}

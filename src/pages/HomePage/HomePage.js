@@ -1,10 +1,10 @@
 import React,{useEffect} from "react";
-import Storybar from "../Storybar/Storybar";
-import MainPagePost from "../MainPagePost/MainPagePost";
-import SuggestList from "../SuggestList/SuggestList";
+import Storybar from "../../component/Storybar/Storybar";
+import MainPagePost from "../../component/MainPagePost/MainPagePost";
+import SuggestList from "../../component/SuggestList/SuggestList";
 import { useSelector, useDispatch } from 'react-redux';
 import {get} from '../../thunk/postThunk';
-import "./MainPagePostList.scss";
+import "./HomePage.scss";
 
 const MainPagePostList=()=>{
 
@@ -28,6 +28,7 @@ const MainPagePostList=()=>{
     return(
         <>
             <div className="post-container">
+                {console.log(posts)}
                 <Storybar/>
                 {posts?
                 posts.map((post)=>{

@@ -2,22 +2,17 @@ import React,{useEffect, useState} from "react";
 import icon from "../../assets/images/icon.jpg"
 import dotdotdot from "../../assets/images/post/dotdotdot.svg"
 import friendsSuggestion from "../../assets/images/profilePage/friendSuggestion.svg"
-import post1 from "../../assets/images/post/post1.jpg";
 import ProfilePagePost from "../../component/ProfilePagePost/ProfilePagePost";
-import CreateModal from "../../component/CreateModal/CreateModal";
 import { useSelector, useDispatch } from 'react-redux';
 import {profile} from '../../thunk/postThunk';
 import {useLocation} from 'react-router-dom';
-import { useNavigate } from "react-router-dom";
 import { clearState } from "../../features/postSlice";
 import "./ProfilePage.scss"
 
 const ProfilePage=({username})=>{
 
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const [currentUser,setCurrentUser]=useState(null);
-    const [modalShow,setModalShow]=useState(false)
 
     const location = useLocation();
 
@@ -25,23 +20,18 @@ const ProfilePage=({username})=>{
         (state) => state.post
     )
 
-    const fetchData =async()=>{
-        const user=(location.pathname.slice(1))
-        try{
-            dispatch(profile({user}))
-        }catch(err){
-            console.log(err)
-        }
-    }
-
     useEffect(()=>{
+        const fetchData =async()=>{
+            const user=(location.pathname.slice(1))
+            try{
+                dispatch(profile({user}))
+            }catch(err){
+                console.log(err)
+            }
+        }
         dispatch(clearState())
         fetchData()
     },[dispatch])
-
-    const navigateToPost=({postId})=>{
-        navigate(`${currentUser}/${postId}`)
-    }
 
     return(
         <div className="profile-page">
@@ -71,10 +61,10 @@ const ProfilePage=({username})=>{
                         <a className="followed-by">Followed by</a>
                     </section>
                 </header>
-                {console.log(profilePosts)}
                 <main className="profile-post-list">
+                    {console.log(profilePosts)}
                     {profilePosts?profilePosts.map(post=>{
-                    return <ProfilePagePost likes={post.likes} photoLink={post.photoLink} postId={post._id} currentUser={currentUser}/>
+                    return <ProfilePagePost likes={post.likes} photoLink={post.photoLink} profilePostContent={post.postContent} postId={post._id} currentUser={currentUser}/>
                     }):null}
                 </main>
             </div>

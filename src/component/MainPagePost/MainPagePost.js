@@ -35,39 +35,7 @@ const Post =({username,photoLink,postContent,timestamp})=>{
                 <img src={dotdotdot} className="more-icon" alt="more"/>
             </div>
             <img src={photoLink} className="post-photo" alt="post"/>
-            {/* <div className="post-details">
-                <div className="post-reaction-list">
-                    <div className="post-reaction-left">
-                        <img src={like} alt="like"/>
-                        <img src={comment} alt="comment"/>
-                        <img src={forward} alt="forward"/>
-                    </div>
-                    <img src={save} alt="save"/>
-                </div>
-                <div className="post-like-list">
-                    <img src={icon} alt="icon"/>
-                    &nbsp;Liked by&nbsp;
-                    <span>
-                        aaa
-                    </span>
-                    &nbsp;and&nbsp;
-                    <span>
-                        1,561 others
-                    </span>
-                </div>
-                <div className="post-content">
-                    <span>
-                        username
-                    </span>
-                    &nbsp;{postContent}
-                </div>
-                <div className="post-comments">
-                </div>
-                <small className="time-stamp">
-                    {dayjs(timestamp).fromNow()}
-                </small>
-            </div> */}
-            <PostReactionList postContent={postContent} timestamp={timestamp}/>
+            <PostReactionList postContent={postContent} timestamp={timestamp} username={username}/>
             <span className="breakline"></span>
             <div className="post-details">
                 <div className="post-reaction-container">

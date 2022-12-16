@@ -8,7 +8,7 @@ import {useNavigate} from "react-router-dom";
 import "./ProfilePagePost.scss"
 import CreateModal from "../CreateModal/CreateModal";
 
-const ProfilePagePost=({likes,photoLink,postId})=>{
+const ProfilePagePost=({likes,photoLink,postId,profilePostContent})=>{
 
     const navigate = useNavigate();
 
@@ -25,7 +25,7 @@ const ProfilePagePost=({likes,photoLink,postId})=>{
 
     return(
         <>
-        <CreateModal modalShow={modalShow} path="profile" onClose={()=>setModalShow(false)} username={username} profilePhotoLink={photoLink}/>
+        <CreateModal modalShow={modalShow} path="profile" onClose={()=>setModalShow(false)} username={username} profilePhotoLink={photoLink} profilePostContent={profilePostContent}/>
         <div className="photo-cover" onClick={()=>handleClick()}>
             <img src={photoLink}/>
             <div className="photo-cover-text">

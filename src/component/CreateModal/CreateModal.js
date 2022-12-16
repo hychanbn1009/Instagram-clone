@@ -7,7 +7,7 @@ import PostModal from "../PostModal/PostModal";
 import {useNavigate} from "react-router-dom";
 import "./CreateModal.scss"
 
-const CreateModal =({modalShow,onClose,path,username,profilePhotoLink})=>{
+const CreateModal =({modalShow,onClose,path,username,profilePhotoLink,profilePostContent})=>{
 
     const navigate = useNavigate();
 
@@ -17,7 +17,6 @@ const CreateModal =({modalShow,onClose,path,username,profilePhotoLink})=>{
     const [imageLoading,setImageLoading]=useState(false);
 
     if (!modalShow){
-        console.log("no modal")
         return null
     }
 
@@ -35,7 +34,7 @@ const CreateModal =({modalShow,onClose,path,username,profilePhotoLink})=>{
             }
         }
         if (path === "profile"){
-            return <PostModal profilePhotoLink={profilePhotoLink} username={username}/>
+            return <PostModal profilePhotoLink={profilePhotoLink} username={username} profilePostContent={profilePostContent}/>
         }
     }
 

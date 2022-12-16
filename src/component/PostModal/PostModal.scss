@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 391px;
+  min-width: 348px;
   .post-detail-modal-body {
     display: flex;
     flex-direction: column;
@@ -9,7 +11,7 @@
   .post-detail-image {
     box-sizing: border-box;
     padding: 8px 24px;
-    width: 70%;
+    width: 500px;
     height: auto;
   }
   .profile-image {
@@ -26,7 +28,7 @@
     padding: 14px 24px;
     flex-grow: 1;
     width: 100%;
-    border-bottom: 1px solid rgb(223, 223, 223);
+    border-bottom: 1px solid rgb(219, 219, 219);
   }
   .profile-information {
     display: flex;
@@ -44,5 +46,60 @@
     box-sizing: border-box;
     width: 100%;
     padding: 14px 24px;
+  }
+  .profile-menu {
+    cursor: pointer;
+  }
+  .post-menu-modal {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 18px;
+    z-index: 2;
+  }
+  .post-menu-content {
+    background-color: rgb(255, 255, 255);
+    color: rgb(38, 38, 38);
+    display: flex;
+    flex-direction: column;
+    max-height: 800px;
+    max-width: 524px;
+    min-height: 100px;
+    min-width: 244px;
+    border-radius: 12px;
+    padding-bottom: 24px;
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    li {
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 4px 8px;
+      height: 40px;
+      width: 100%;
+      font-size: 15px;
+      font-weight: 400;
+      cursor: pointer;
+    }
+    .edit {
+      border-top: 1px solid rgb(219, 219, 219);
+    }
+    .delete {
+      font-weight: 700;
+      color: rgb(237, 73, 86);
+    }
+    .cancel {
+      border-top: 1px solid rgb(219, 219, 219);
+    }
   }
 }

@@ -5,8 +5,8 @@ export const submit = createAsyncThunk(
     'post/submit',
     async ({ photoLink, postContent },thunkAPI)=>{
       try{
-        await backendApi.post('/', {photoLink, postContent});
-        return true
+        const response = await backendApi.post('/', {photoLink, postContent});
+        return response;
       } catch(err){
         return 'Something went wrong with submit'
       }
@@ -36,6 +36,36 @@ export const profile = createAsyncThunk(
       return response;
     } catch(err){
       return 'Something went wrong with profile'
+    }
+  }
+)
+
+export const removePost = createAsyncThunk(
+  'post/delete',
+  async ({username,postId},thunkAPI)=>{
+    console.log('delete post')
+    try{
+      console.log(postId)
+      const response = await backendApi.delete(`/${username}/${postId}`);
+      console.log(response)
+      return response;
+    } catch(err){
+      return 'Something went wrong with delete'
+    }
+  }
+)
+
+export const editPost = createAsyncThunk(
+  'post/edit',
+  async ({username,postId,postContent},thunkAPI)=>{
+    console.log('edit post')
+    try{
+      console.log(postId)
+      const response = await backendApi.put(`/${username}/${postId}`,{postContent});
+      console.log(response)
+      return response;
+    } catch(err){
+      return 'Something went wrong with edit'
     }
   }
 )
