@@ -3,9 +3,11 @@ import backendApi from "../api/backend";
 
 export const submit = createAsyncThunk(
     'post/submit',
-    async ({ photoLink, postContent },thunkAPI)=>{
+    async ({ photoLink, postContent,username },thunkAPI)=>{
       try{
-        const response = await backendApi.post('/', {photoLink, postContent});
+        console.log(photoLink, postContent,username)
+        const response = await backendApi.post('/create', {photoLink, postContent,username});
+        console.log(response)
         return response;
       } catch(err){
         return 'Something went wrong with submit'
@@ -27,11 +29,11 @@ export const get = createAsyncThunk(
 
 export const profile = createAsyncThunk(
   'post/profile',
-  async ({user},thunkAPI)=>{
+  async ({username},thunkAPI)=>{
     console.log('get profile')
     try{
-      console.log(user)
-      const response = await backendApi.get(`/${user}`);
+      console.log(username)
+      const response = await backendApi.get(`/${username}`);
       console.log(response)
       return response;
     } catch(err){

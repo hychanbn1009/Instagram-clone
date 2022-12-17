@@ -83,9 +83,10 @@
     padding: 0 6px;
     min-height: 391px;
     min-width: 348px;
+    width: 100%;
     .preview-image {
-      height: 235px;
-      width: 235px;
+      height: auto;
+      width: 80%;
       display: block;
     }
     .btn-group {

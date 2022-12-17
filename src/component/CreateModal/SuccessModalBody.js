@@ -2,6 +2,7 @@ import React from "react";
 import "./CreateModal.scss";
 
 const SuccessModalBody=()=>{
+
     return(
         <>
             <h1 className="modal-header">

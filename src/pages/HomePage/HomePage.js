@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {get} from '../../thunk/postThunk';
 import "./HomePage.scss";
 
-const MainPagePostList=()=>{
+const HomePage=()=>{
 
     const {posts} = useSelector(
         (state) => state.post
@@ -41,4 +41,4 @@ const MainPagePostList=()=>{
     )
 }
 
-export default MainPagePostList;
+export default HomePage;

@@ -7,7 +7,7 @@ import PostModal from "../PostModal/PostModal";
 import {useNavigate} from "react-router-dom";
 import "./CreateModal.scss"
 
-const CreateModal =({modalShow,onClose,path,username,profilePhotoLink,profilePostContent})=>{
+const CreateModal =({modalShow,onClose,path,username,profilePhotoLink,profilePostContent,timestamp})=>{
 
     const navigate = useNavigate();
 
@@ -26,15 +26,21 @@ const CreateModal =({modalShow,onClose,path,username,profilePhotoLink,profilePos
                 case 0:
                     return <InputModalBody photoLink={photoLink} setPhotoLink={setPhotoLink} setStep={setStep} step={step} imageLoading={imageLoading} setImageLoading={setImageLoading}/>
                 case 1:
-                    return <PreviewModalBody photoLink={photoLink} setPhotoLink={setPhotoLink} setStep={setStep} step={step} postContent={postContent} setPostContent={setPostContent}/>
+                    return <PreviewModalBody 
+                    photoLink={photoLink} 
+                    setPhotoLink={setPhotoLink} 
+                    setStep={setStep} step={step} 
+                    postContent={postContent} 
+                    setPostContent={setPostContent}
+                    path={path}/>
                 case 2:
-                    return <SuccessModalBody/>
+                    return <SuccessModalBody path={path}/>
                 default:
                     break;
             }
         }
         if (path === "profile"){
-            return <PostModal profilePhotoLink={profilePhotoLink} username={username} profilePostContent={profilePostContent}/>
+            return <PostModal profilePhotoLink={profilePhotoLink} username={username} profilePostContent={profilePostContent} timestamp={timestamp}/>
         }
     }
 

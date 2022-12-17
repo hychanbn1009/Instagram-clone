@@ -6,6 +6,7 @@ const initialState= {
   loading: false,
   success: false,
   errorMessage: null,
+  profilePosts:[]
 }
 
 const postSlice  = createSlice({
@@ -17,13 +18,16 @@ const postSlice  = createSlice({
       state.success=false
       state.posts=[]
       state.errorMessage=null
+      state.profilePosts=[]
     }
   },
   // dealing with an action that already defined in createAsyncThunk 
   extraReducers:{
     [submit.fulfilled]: (state, action) => {
       console.log("submit success")
-      state.posts = action.payload.data;
+      console.log(action)
+      state.posts = action.payload.data.posts;
+      state.profilePosts = action.payload.data.profilePosts;
       state.loading = false;
       state.success = true;
     },
@@ -52,15 +56,17 @@ const postSlice  = createSlice({
       state.errorMessage = action.payload
     },
     [profile.fulfilled]: (state, action) => {
-      console.log("get success")
+      console.log("profile success")
       state.profilePosts = action.payload.data;
       state.loading = false;
       state.success = true;
     },
     [profile.pending]: (state, action) => {
+      console.log("profile success")
       state.loading = true
     },
     [profile.rejected]: (state, action) => {
+      console.log("profile reject")
       state.loading = false
       state.errorMessage = action.payload
     },

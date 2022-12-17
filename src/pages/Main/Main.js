@@ -38,7 +38,6 @@ const Main =()=>{
                     <Route path="/profile" element={<ProfilePage/>}/>
                     <Route path="/explore" element={<ExplorePage/>}/>
                     <Route path="/direct/inbox" element={<MessagesPage/>}/>
-                    <Route path="/direct/inbox" element={<MessagesPage/>}/>
                     <Route path="*" element={<p>Path not resolved</p>} />
                     <Route path="/profile" element={<ProfilePage username={username}/>} />
                     <Route path="/:username" element={<ProfilePage/>}/>

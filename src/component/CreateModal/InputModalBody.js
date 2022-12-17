@@ -32,7 +32,6 @@ const InputModalBody=({photoLink,setPhotoLink,step,setStep,imageLoading,setImage
             setErrorMessage("")
             setImageLoading(false)
         }catch(err){
-            console.log("run!")
             setErrorMessage("Your image link may not correct. Please check again.")
             setErrorMessageShake(true)
             setImageLoading(false)

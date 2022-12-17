@@ -1,8 +1,8 @@
 import React,{useState} from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { submit } from "../../thunk/postThunk";
+import { submit,editPost } from "../../thunk/postThunk";
 
-const PreviewModalBody=({photoLink,setPhotoLink,step,setStep,postContent,setPostContent})=>{
+const PreviewModalBody=({photoLink,setPhotoLink,step,setStep,postContent,setPostContent,path,postId})=>{
 
     const [errorMessageShake,setErrorMessageShake]=useState(false);
     const [errorMessage,setErrorMessage]=useState("");
@@ -10,19 +10,39 @@ const PreviewModalBody=({photoLink,setPhotoLink,step,setStep,postContent,setPost
     const { loading, error } = useSelector(
         (state) => state.post
     )
+
+    const { token,username } = useSelector(
+        (state) => state.auth
+    )
+
     const dispatch = useDispatch();
 
     const handleSubmit = async() => {
-        if(postContent){
-            try{
-                dispatch(submit({photoLink,postContent}))
-                setStep(step+1)
-            } catch(err){
-                setErrorMessage(err)
+        if (path==="create"){
+            if(postContent){
+                try{
+                    dispatch(submit({photoLink,postContent,username}))
+                    setStep(step+1)
+                } catch(err){
+                    setErrorMessage(err)
+                }
+            }else{
+                setErrorMessage("Post content cannot be empty!")
             }
-        }else{
-            setErrorMessage("Post content cannot be empty!")
         }
+        if (path==="edit"){
+            if(postContent){
+                try{
+                    dispatch(editPost({username,postId,postContent}))
+                    setStep(step+1)
+                } catch(err){
+                    setErrorMessage(err)
+                }
+            }else{
+                setErrorMessage("Post content cannot be empty!")
+            }
+        }
+
     };
 
     return(
@@ -30,7 +50,6 @@ const PreviewModalBody=({photoLink,setPhotoLink,step,setStep,postContent,setPost
             <h1 className="modal-header">
                 Preview Your Post
             </h1>
-            {console.log(postContent)}
             <div className="preview-modal-body">
                 <img src={photoLink} alt="preview" className="preview-image"/>
                 <textarea 

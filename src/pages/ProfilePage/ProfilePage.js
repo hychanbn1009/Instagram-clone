@@ -9,27 +9,27 @@ import {useLocation} from 'react-router-dom';
 import { clearState } from "../../features/postSlice";
 import "./ProfilePage.scss"
 
-const ProfilePage=({username})=>{
+const ProfilePage=()=>{
 
     const dispatch = useDispatch();
     const [currentUser,setCurrentUser]=useState(null);
 
     const location = useLocation();
+    const username=(location.pathname.slice(1))
 
     const {profilePosts,loading} = useSelector(
         (state) => state.post
     )
-
+            // dispatch(clearState())
     useEffect(()=>{
+        console.log(username)
         const fetchData =async()=>{
-            const user=(location.pathname.slice(1))
             try{
-                dispatch(profile({user}))
+                return dispatch(profile({username}))
             }catch(err){
                 console.log(err)
             }
         }
-        dispatch(clearState())
         fetchData()
     },[dispatch])
 
@@ -64,7 +64,7 @@ const ProfilePage=({username})=>{
                 <main className="profile-post-list">
                     {console.log(profilePosts)}
                     {profilePosts?profilePosts.map(post=>{
-                    return <ProfilePagePost likes={post.likes} photoLink={post.photoLink} profilePostContent={post.postContent} postId={post._id} currentUser={currentUser}/>
+                    return <ProfilePagePost likes={post.likes} photoLink={post.photoLink} profilePostContent={post.postContent} postId={post._id} currentUser={currentUser} timestamp={post.timestamp}/>
                     }):null}
                 </main>
             </div>

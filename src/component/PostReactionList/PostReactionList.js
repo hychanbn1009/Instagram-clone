@@ -11,7 +11,6 @@ const relativeTime = require('dayjs/plugin/relativeTime');
 const PostReactionList=({profilePostContent,timestamp,username})=>{
     return(
         <div className="post-details">
-            {console.log(profilePostContent)}
                 <div className="post-reaction-list">
                     <div className="post-reaction-left">
                         <img src={like} alt="like"/>

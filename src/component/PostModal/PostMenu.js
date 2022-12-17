@@ -24,9 +24,17 @@ const PostMenu=({onClose,profilePhotoLink,profilePostContent})=>{
                         </>
                     )
                 case 1:
-                    return <PreviewModalBody photoLink={profilePhotoLink} setStep={setStep} step={step} postContent={newPostContent} setPostContent={setNewPostContent}/>
+                    return <PreviewModalBody 
+                    photoLink={profilePhotoLink} 
+                    setStep={setStep} step={step} 
+                    postContent={newPostContent} 
+                    setPostContent={setNewPostContent} 
+                    path="edit"
+                    username={username}
+                    postId={postId}
+                    />
                 case 2:
-                    return <SuccessModalBody/>
+                    return <SuccessModalBody path="edit"/>
                 default:
                     break;
             }
