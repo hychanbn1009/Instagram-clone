@@ -29,11 +29,11 @@ export const get = createAsyncThunk(
 
 export const profile = createAsyncThunk(
   'post/profile',
-  async ({username},thunkAPI)=>{
+  async ({currentUser},thunkAPI)=>{
     console.log('get profile')
     try{
-      console.log(username)
-      const response = await backendApi.get(`/${username}`);
+      console.log(currentUser)
+      const response = await backendApi.get(`/${currentUser}`);
       console.log(response)
       return response;
     } catch(err){
@@ -68,6 +68,21 @@ export const editPost = createAsyncThunk(
       return response;
     } catch(err){
       return 'Something went wrong with edit'
+    }
+  }
+)
+
+export const likePost = createAsyncThunk(
+  'post/like',
+  async ({username,postId},thunkAPI)=>{
+    console.log('like post')
+    try{
+      console.log(postId)
+      const response = await backendApi.post(`/like`,{postId,username});
+      console.log(response)
+      return response;
+    } catch(err){
+      return 'Something went wrong with like'
     }
   }
 )

@@ -35,7 +35,7 @@ const Post =({username,photoLink,postContent,timestamp})=>{
                 <img src={dotdotdot} className="more-icon" alt="more"/>
             </div>
             <img src={photoLink} className="post-photo" alt="post"/>
-            <PostReactionList postContent={postContent} timestamp={timestamp} username={username}/>
+            <PostReactionList profilePostContent={postContent} timestamp={timestamp} username={username}/>
             <span className="breakline"></span>
             <div className="post-details">
                 <div className="post-reaction-container">

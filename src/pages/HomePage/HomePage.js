@@ -28,7 +28,6 @@ const HomePage=()=>{
     return(
         <>
             <div className="post-container">
-                {console.log(posts)}
                 <Storybar/>
                 {posts?
                 posts.map((post)=>{

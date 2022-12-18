@@ -6,7 +6,9 @@ const initialState= {
   loading: false,
   success: false,
   errorMessage: null,
-  profilePosts:[]
+  profilePosts:[],
+  profileUser:null,
+  followers:[]
 }
 
 const postSlice  = createSlice({
@@ -19,6 +21,8 @@ const postSlice  = createSlice({
       state.posts=[]
       state.errorMessage=null
       state.profilePosts=[]
+      state.profileUser=null
+      state.followers=[]
     }
   },
   // dealing with an action that already defined in createAsyncThunk 
@@ -57,7 +61,9 @@ const postSlice  = createSlice({
     },
     [profile.fulfilled]: (state, action) => {
       console.log("profile success")
-      state.profilePosts = action.payload.data;
+      state.profilePosts = action.payload.data.profilePosts;
+      state.profileUser = action.payload.data.profileUser;
+      state.followers = action.payload.data.profileUser[0].followers
       state.loading = false;
       state.success = true;
     },
