@@ -25,7 +25,15 @@ const ProfilePagePost=({likes,photoLink,postId,profilePostContent,timestamp})=>{
 
     return(
         <>
-        <CreateModal modalShow={modalShow} path="profile" onClose={()=>setModalShow(false)} username={username} profilePhotoLink={photoLink} profilePostContent={profilePostContent} timestamp={timestamp}/>
+        <CreateModal modalShow={modalShow} 
+        path="profile" 
+        onClose={()=>setModalShow(false)} 
+        username={username} 
+        profilePhotoLink={photoLink} 
+        profilePostContent={profilePostContent} 
+        timestamp={timestamp} 
+        postId={postId}
+        />
         <div className="photo-cover" onClick={()=>handleClick()}>
             <img src={photoLink}/>
             <div className="photo-cover-text">

@@ -6,7 +6,7 @@ import PostReactionList from "../PostReactionList/PostReactionList";
 import PostMenu from "./PostMenu";
 import "./PostModal.scss";
 
-const PostDetailPage=({username,profilePhotoLink,profilePostContent,timestamp})=>{
+const PostDetailPage=({username,profilePhotoLink,profilePostContent,timestamp,postId})=>{
 
     const [showMenu,setShowMenu]=useState(false)
 
@@ -24,7 +24,7 @@ const PostDetailPage=({username,profilePhotoLink,profilePostContent,timestamp})=
             </header>
             <img src={profilePhotoLink} alt="post-detail" className="post-detail-image"/>
             <div className="post-detail-modal-body">
-                <PostReactionList profilePostContent={profilePostContent} username={username} timestamp={timestamp}/>
+                <PostReactionList profilePostContent={profilePostContent} username={username} timestamp={timestamp} postId={postId}/>
             </div>
         </div>
     )

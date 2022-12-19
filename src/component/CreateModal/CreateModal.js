@@ -7,7 +7,7 @@ import PostModal from "../PostModal/PostModal";
 import {useNavigate} from "react-router-dom";
 import "./CreateModal.scss"
 
-const CreateModal =({modalShow,onClose,path,username,profilePhotoLink,profilePostContent,timestamp})=>{
+const CreateModal =({modalShow,onClose,path,username,profilePhotoLink,profilePostContent,timestamp,postId})=>{
 
     const navigate = useNavigate();
 
@@ -40,7 +40,7 @@ const CreateModal =({modalShow,onClose,path,username,profilePhotoLink,profilePos
             }
         }
         if (path === "profile"){
-            return <PostModal profilePhotoLink={profilePhotoLink} username={username} profilePostContent={profilePostContent} timestamp={timestamp}/>
+            return <PostModal profilePhotoLink={profilePhotoLink} username={username} profilePostContent={profilePostContent} timestamp={timestamp} postId={postId}/>
         }
     }
 

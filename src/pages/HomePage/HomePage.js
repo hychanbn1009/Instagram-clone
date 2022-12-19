@@ -31,7 +31,7 @@ const HomePage=()=>{
                 <Storybar/>
                 {posts?
                 posts.map((post)=>{
-                    return <MainPagePost key={post._id} username={post.author.username} photoLink={post.photoLink} postContent={post.postContent} timestamp={post.timestamp}/>
+                    return <MainPagePost postId={post._id} username={post.author.username} photoLink={post.photoLink} postContent={post.postContent} timestamp={post.timestamp} likedUser={post.likedUser}/>
                 }) 
                 :<div className="loader"></div>}
             </div>

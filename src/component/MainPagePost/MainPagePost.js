@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 import PostReactionList from "../PostReactionList/PostReactionList"
 const relativeTime = require('dayjs/plugin/relativeTime');
 
-const Post =({username,photoLink,postContent,timestamp})=>{
+const Post =({username,photoLink,postContent,timestamp,postId,likedUser})=>{
 
     dayjs.extend(relativeTime)
     const navigate = useNavigate();
@@ -35,7 +35,7 @@ const Post =({username,photoLink,postContent,timestamp})=>{
                 <img src={dotdotdot} className="more-icon" alt="more"/>
             </div>
             <img src={photoLink} className="post-photo" alt="post"/>
-            <PostReactionList profilePostContent={postContent} timestamp={timestamp} username={username}/>
+            <PostReactionList profilePostContent={postContent} timestamp={timestamp} username={username} postId={postId} likedUser={likedUser}/>
             <span className="breakline"></span>
             <div className="post-details">
                 <div className="post-reaction-container">

@@ -8,27 +8,41 @@ import dayjs from "dayjs";
 import "./PostReactionList.scss"
 const relativeTime = require('dayjs/plugin/relativeTime');
 
-const PostReactionList=({profilePostContent,timestamp,username})=>{
+const PostReactionList=({profilePostContent,timestamp,username,postId,likedUser})=>{
+
+    const checkLikedUser=()=>{
+        if (likedUser.length>0 ){
+            return likedUser[0].username
+        }else{
+            return null
+        }
+    }
+
     return(
-        <div className="post-details">
+        <div className="post-details" id={postId}>
                 <div className="post-reaction-list">
                     <div className="post-reaction-left">
-                        <img src={like} alt="like"/>
+                        <img src={like} alt="like" onClick={(event)=>console.log(postId)}/>
                         <img src={comment} alt="comment"/>
                         <img src={forward} alt="forward"/>
                     </div>
                     <img src={save} alt="save"/>
                 </div>
                 <div className="post-like-list">
-                    <img src={icon} alt="icon"/>
-                    &nbsp;Liked by&nbsp;
-                    <span>
-                        aaa
-                    </span>
-                    &nbsp;and&nbsp;
-                    <span>
-                        1,561 others
-                    </span>
+                    {likedUser.length>0?
+                        <>
+                        <img src={icon} alt="icon"/>
+                        &nbsp;Liked by&nbsp;
+                        <span>
+                            {`${checkLikedUser()}`}
+                        </span>
+                        {likedUser.length>1?<>&nbsp;and&nbsp;</>:null}
+                        <span>
+                            {likedUser.length>1?`${likedUser.length} others`:null}
+                        </span>
+                        </>
+                    :null
+                    }
                 </div>
                 <div className="post-content">
                     <span>
