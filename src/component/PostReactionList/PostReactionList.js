@@ -11,7 +11,7 @@ const relativeTime = require('dayjs/plugin/relativeTime');
 const PostReactionList=({profilePostContent,timestamp,username,postId,likedUser})=>{
 
     const checkLikedUser=()=>{
-        if (likedUser.length>0 ){
+        if (likedUser.length>0){
             return likedUser[0].username
         }else{
             return null
@@ -29,7 +29,7 @@ const PostReactionList=({profilePostContent,timestamp,username,postId,likedUser}
                     <img src={save} alt="save"/>
                 </div>
                 <div className="post-like-list">
-                    {likedUser.length>0?
+                    {checkLikedUser()>0?
                         <>
                         <img src={icon} alt="icon"/>
                         &nbsp;Liked by&nbsp;

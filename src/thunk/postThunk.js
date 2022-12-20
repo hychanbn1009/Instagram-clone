@@ -47,9 +47,7 @@ export const removePost = createAsyncThunk(
   async ({username,postId},thunkAPI)=>{
     console.log('delete post')
     try{
-      console.log(postId)
       const response = await backendApi.delete(`/${username}/${postId}`);
-      console.log(response)
       return response;
     } catch(err){
       return 'Something went wrong with delete'
@@ -62,9 +60,7 @@ export const editPost = createAsyncThunk(
   async ({username,postId,postContent},thunkAPI)=>{
     console.log('edit post')
     try{
-      console.log(postId)
       const response = await backendApi.put(`/${username}/${postId}`,{postContent});
-      console.log(response)
       return response;
     } catch(err){
       return 'Something went wrong with edit'
@@ -77,9 +73,7 @@ export const likePost = createAsyncThunk(
   async ({username,postId},thunkAPI)=>{
     console.log('like post')
     try{
-      console.log(postId)
       const response = await backendApi.post(`/like`,{postId,username});
-      console.log(response)
       return response;
     } catch(err){
       return 'Something went wrong with like'

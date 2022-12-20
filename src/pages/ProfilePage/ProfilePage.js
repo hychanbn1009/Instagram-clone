@@ -15,7 +15,7 @@ const ProfilePage=()=>{
     // const [currentUser,setCurrentUser]=useState(null);
 
     const location = useLocation();
-    const currentUser=(location.pathname.slice(1))
+    const currentUser=(location.pathname.split("/")[1])
 
     const {profilePosts,loading,profileUser,followers} = useSelector(
         (state) => state.post
@@ -29,7 +29,6 @@ const ProfilePage=()=>{
         const fetchData =async()=>{
             try{
                 dispatch(profile({currentUser})).then(
-                    console.log(username,currentUser)
                 )
             }catch(err){
                 console.log(err)
@@ -45,7 +44,7 @@ const ProfilePage=()=>{
                 <header className="profile">
                     <div className="profile-image">
                         <div className="profile-image-wrap">
-                            <img src={icon}/>
+                            <img src={icon} alt="icon"/>
                         </div>
                     </div>
                     <section className="profile-details">
@@ -58,7 +57,7 @@ const ProfilePage=()=>{
                                 <button className="follow-button">Follow</button>
                                 <button className="message-button">Message</button>
                                 <button className="suggestion-button"><img src={friendsSuggestion}/></button>
-                                <img className="more-button" src={dotdotdot}/>
+                                <img className="more-button" src={dotdotdot} alt="more"/>
                             </>
                             }
                         </div>
@@ -75,7 +74,7 @@ const ProfilePage=()=>{
                 <main className="profile-post-list">
                     {console.log(profileUser)}
                     {profilePosts?profilePosts.map(post=>{
-                    return <ProfilePagePost likes={post.likes} photoLink={post.photoLink} profilePostContent={post.postContent} postId={post._id} timestamp={post.timestamp}/>
+                    return <ProfilePagePost likes={post.likes} photoLink={post.photoLink} profilePostContent={post.postContent} postId={post._id} timestamp={post.timestamp} likedUser={post.likedUser} username={post.author.username}/>
                     }):null}
                 </main>
             </div>
