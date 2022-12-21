@@ -6,7 +6,7 @@ import save from "../../assets/images/post/save.svg";
 import icon from "../../assets/images/icon.jpg";
 import liked from "../../assets/images/post/liked.svg";
 import dayjs from "dayjs";
-import {likePost} from '../../thunk/postThunk';
+import {likePost,unlikePost} from '../../thunk/postThunk';
 import {useDispatch} from 'react-redux';
 import "./PostReactionList.scss"
 const relativeTime = require('dayjs/plugin/relativeTime');
@@ -31,14 +31,22 @@ const PostReactionList=({profilePostContent,timestamp,username,postId,likedUser}
         }
     }
 
+    const onClickUnlikePost=async()=>{
+        try{
+            dispatch(unlikePost({username,postId}))
+        }catch(err){
+            console.log(err)
+        }
+    }
+
     return(
         <div className="post-details" id={postId}>
                 <div className="post-reaction-list">
                     <div className="post-reaction-left">
-                        {username in likedUser?
-                            <img src={likeButton} alt="like" onClick={(event)=>onClicklikePost()}/>
+                        {likedUser.find(object=>object.username===username)?
+                            <img src={liked} alt="liked" onClick={(event)=>onClickUnlikePost()}/>
                             :
-                            <img src={liked} alt="liked"/>
+                            <img src={likeButton} alt="like" onClick={(event)=>onClicklikePost()}/>
                         }
                         <img src={comment} alt="comment"/>
                         <img src={forward} alt="forward"/>

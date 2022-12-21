@@ -80,3 +80,16 @@ export const likePost = createAsyncThunk(
     }
   }
 )
+
+export const unlikePost = createAsyncThunk(
+  'post/like',
+  async ({username,postId},thunkAPI)=>{
+    console.log('unlike post')
+    try{
+      const response = await backendApi.post(`/unlike`,{username,postId});
+      return response;
+    } catch(err){
+      return 'Something went wrong with unlike'
+    }
+  }
+)
