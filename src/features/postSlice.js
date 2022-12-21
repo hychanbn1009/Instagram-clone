@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {submit,get,profile,removePost,editPost} from '../thunk/postThunk';
+import {submit,get,profile,removePost,editPost,likePost} from '../thunk/postThunk';
 
 const initialState= {
   posts:[],
@@ -28,8 +28,6 @@ const postSlice  = createSlice({
   // dealing with an action that already defined in createAsyncThunk 
   extraReducers:{
     [submit.fulfilled]: (state, action) => {
-      console.log("submit success")
-      console.log(action)
       state.posts = action.payload.data.posts;
       state.profilePosts = action.payload.data.profilePosts;
       state.loading = false;
@@ -97,6 +95,19 @@ const postSlice  = createSlice({
       state.loading = true
     },
     [editPost.rejected]: (state, action) => {
+      state.loading = false
+      state.errorMessage = action.payload
+    },
+    [likePost.fulfilled]: (state, action) => {
+      state.posts = action.payload.data.posts;
+      state.profilePosts = action.payload.data.profilePosts;
+      state.loading = false;
+      state.success = true;
+    },
+    [likePost.pending]: (state, action) => {
+      state.loading = true
+    },
+    [likePost.rejected]: (state, action) => {
       state.loading = false
       state.errorMessage = action.payload
     },

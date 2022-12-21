@@ -73,7 +73,7 @@ export const likePost = createAsyncThunk(
   async ({username,postId},thunkAPI)=>{
     console.log('like post')
     try{
-      const response = await backendApi.post(`/like`,{postId,username});
+      const response = await backendApi.post(`/like`,{username,postId});
       return response;
     } catch(err){
       return 'Something went wrong with like'
