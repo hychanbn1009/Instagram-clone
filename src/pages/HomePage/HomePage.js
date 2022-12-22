@@ -33,7 +33,7 @@ const HomePage=()=>{
                 {posts?
                 posts.map((post)=>{
                     {console.log(post.likedUser)}
-                    return <MainPagePost postId={post._id} username={post.author.username} photoLink={post.photoLink} postContent={post.postContent} timestamp={post.timestamp} likedUser={post.likedUser}/>
+                    return <MainPagePost postId={post._id} author={post.author.username} photoLink={post.photoLink} postContent={post.postContent} timestamp={post.timestamp} likedUser={post.likedUser}/>
                 }) 
                 :<div className="loader"></div>}
             </div>

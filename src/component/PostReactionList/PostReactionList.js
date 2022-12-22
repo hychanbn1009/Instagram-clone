@@ -7,13 +7,17 @@ import icon from "../../assets/images/icon.jpg";
 import liked from "../../assets/images/post/liked.svg";
 import dayjs from "dayjs";
 import {likePost,unlikePost} from '../../thunk/postThunk';
-import {useDispatch} from 'react-redux';
+import {useDispatch,useSelector} from 'react-redux';
 import "./PostReactionList.scss"
 const relativeTime = require('dayjs/plugin/relativeTime');
 
-const PostReactionList=({profilePostContent,timestamp,username,postId,likedUser})=>{
+const PostReactionList=({profilePostContent,timestamp,author,postId,likedUser})=>{
 
     const dispatch = useDispatch();
+
+    const { token,username } = useSelector(
+        (state) => state.auth
+    )
 
     const checkLikedUser=()=>{
         if (likedUser.length>0){
@@ -63,7 +67,7 @@ const PostReactionList=({profilePostContent,timestamp,username,postId,likedUser}
                         </span>
                         {likedUser.length>1?<>&nbsp;and&nbsp;</>:null}
                         <span>
-                            {likedUser.length>1?`${likedUser.length} others`:null}
+                            {likedUser.length>1?`${likedUser.length-1} others`:null}
                         </span>
                         </>
                     :null
@@ -71,7 +75,7 @@ const PostReactionList=({profilePostContent,timestamp,username,postId,likedUser}
                 </div>
                 <div className="post-content">
                     <span>
-                        {username}
+                        {author}
                     </span>
                     &nbsp;{profilePostContent}
                 </div>
