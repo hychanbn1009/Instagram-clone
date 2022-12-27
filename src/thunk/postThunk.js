@@ -5,9 +5,7 @@ export const submit = createAsyncThunk(
     'post/submit',
     async ({ photoLink, postContent,username },thunkAPI)=>{
       try{
-        console.log(photoLink, postContent,username)
         const response = await backendApi.post('/create', {photoLink, postContent,username});
-        console.log(response)
         return response;
       } catch(err){
         return 'Something went wrong with submit'
@@ -30,11 +28,9 @@ export const get = createAsyncThunk(
 export const profile = createAsyncThunk(
   'post/profile',
   async ({currentUser},thunkAPI)=>{
-    console.log('get profile')
     try{
       console.log(currentUser)
       const response = await backendApi.get(`/${currentUser}`);
-      console.log(response)
       return response;
     } catch(err){
       return 'Something went wrong with profile'
@@ -90,6 +86,30 @@ export const unlikePost = createAsyncThunk(
       return response;
     } catch(err){
       return 'Something went wrong with unlike'
+    }
+  }
+)
+
+export const followUser = createAsyncThunk(
+  'post/follow',
+  async ({username,targetUser},thunkAPI)=>{
+    try{
+      const response = await backendApi.post(`/follow`,{username,targetUser});
+      return response;
+    } catch(err){
+      return 'Something went wrong with follow'
+    }
+  }
+)
+
+export const unfollowUser = createAsyncThunk(
+  'post/unfollow',
+  async ({username,targetUser},thunkAPI)=>{
+    try{
+      const response = await backendApi.post(`/unfollow`,{username,targetUser});
+      return response;
+    } catch(err){
+      return 'Something went wrong with follow'
     }
   }
 )

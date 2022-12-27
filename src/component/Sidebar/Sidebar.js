@@ -20,7 +20,7 @@ const Sidebar =()=>{
     const [modalShow,setModalShow]=useState(false)
     const [dropUpMenuShow,setDropUpMenuShow]=useState(false)
 
-    const {username} = useSelector(
+    const {user} = useSelector(
         (state) => state.auth
     )
 
@@ -38,7 +38,7 @@ const Sidebar =()=>{
                 <Link to="/direct/inbox"><li><img src={messages} className="side-bar-icon" alt="messages"/><span className="side-bar-span">Messages</span></li></Link>
                 <li><img src={notifications} className="side-bar-icon" alt="notifications"/><span className="side-bar-span">Notifications</span></li>
                 <li onClick={()=>setModalShow(true)}><img src={create} className="side-bar-icon" alt="create"/><span className="side-bar-span">Create</span></li>
-                <Link to={`/${username}`}><li><img src={icon} className="profile-icon" alt="icon"/><span className="side-bar-span">Profile</span></li></Link>
+                <Link to={`/${user.username}`}><li><img src={icon} className="profile-icon" alt="icon"/><span className="side-bar-span">Profile</span></li></Link>
             </ul>
             <ul>
                 <DropUpMenu dropUpMenuShow={dropUpMenuShow}/>

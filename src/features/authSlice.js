@@ -1,15 +1,15 @@
 import { createSlice} from '@reduxjs/toolkit';
-import {login, register} from '../thunk/authThunk';
+import {login, register,updateUser} from '../thunk/authThunk';
 
-const token = localStorage.getItem('token')?localStorage.getItem('token'):null;
-const userId = localStorage.getItem('userId')?localStorage.getItem('userId'):null;
-const username = localStorage.getItem('username')?localStorage.getItem('username'):null;
+// const token = localStorage.getItem('token')?localStorage.getItem('token'):null;
+// const userId = localStorage.getItem('userId')?localStorage.getItem('userId'):null;
+// const username = localStorage.getItem('username')?localStorage.getItem('username'):null;
+const user = localStorage.getItem('user')?localStorage.getItem('user'):null;
 
 
 const initialState= {
-  userId,
-  username,
-  token,
+  followers:null,
+  user:null,
   loading: false,
   success: false,
   errorMessage: null,
@@ -22,8 +22,9 @@ const authSlice  = createSlice({
     logout:(state)=>{
       console.log('Logout!')
       localStorage.removeItem('token')
-      localStorage.removeItem('userId')
-      localStorage.removeItem('username')
+      localStorage.removeItem('user')
+      // localStorage.removeItem('userId')
+      // localStorage.removeItem('username')
       state.loading=false
       state.token=null
       state.errorMessage=null
@@ -37,13 +38,11 @@ const authSlice  = createSlice({
   // dealing with an action that already defined in createAsyncThunk 
   extraReducers:{
     [login.fulfilled]: (state, action) => {
-      const {token, userId,username} = action.payload;
+      const {token, user} = action.payload;
       state.token = token;
-      state.userId = userId;
-      state.username = username;
+      state.user = user;
       state.loading = false;
       state.success = true;
-      return state
     },
     [login.pending]: (state, action) => {
       state.loading = true
@@ -54,10 +53,9 @@ const authSlice  = createSlice({
       state.errorMessage = action.payload
     },
     [register.fulfilled]: (state, action) => {
-      const {token, userId,username} = action.payload;
+      const {token, user} = action.payload;
       state.token = token;
-      state.userId = userId;
-      state.username = username;
+      state.user = user;
       state.loading = false;
       state.success = true;
     },
@@ -66,6 +64,20 @@ const authSlice  = createSlice({
       state.error = null
     },
     [register.rejected]: (state, action) => {
+      state.loading = false
+      state.errorMessage = action.payload
+    },
+    [updateUser.fulfilled]: (state, action) => {
+      const user = action.payload.data.user[0];
+      state.user = user;
+      state.loading = false;
+      state.success = true;
+    },
+    [updateUser.pending]: (state, action) => {
+      state.loading = true
+      state.error = null
+    },
+    [updateUser.rejected]: (state, action) => {
       state.loading = false
       state.errorMessage = action.payload
     },

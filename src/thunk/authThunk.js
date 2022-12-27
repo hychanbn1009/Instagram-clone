@@ -40,3 +40,14 @@ export const register = createAsyncThunk(
   }
 )
 
+export const updateUser = createAsyncThunk(
+  'auth/updateUser',
+  async ({username},thunkAPI)=>{
+    try{
+      const response = await backendApi.post('/updateUser', {username});
+      return response;
+    } catch(err){
+      return 'Something went wrong with update'
+    }
+  }
+)

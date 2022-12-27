@@ -77,12 +77,21 @@
         color: rgb(255, 255, 255);
         background-color: rgb(0, 149, 246);
         margin-left: 23px;
+        cursor: pointer;
+      }
+      .unfollow-button {
+        padding: 5px 13px;
+        border: 1px solid rgba(0, 0, 0, 0);
+        color: rgb(38, 38, 38);
+        margin-left: 23px;
+        cursor: pointer;
       }
       .message-button {
         padding: 5px 13px;
         border: 1px solid rgb(219, 219, 219);
         color: rgb(38, 38, 38);
         background-color: rgba(0, 0, 0, 0);
+        cursor: pointer;
       }
       .suggestion-button {
         width: 34px;
@@ -93,6 +102,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        cursor: pointer;
         img {
           width: 16px;
           height: 16px;
@@ -104,6 +114,7 @@
         font-size: 14px;
         font-weight: 400;
         padding: 8px;
+        cursor: pointer;
       }
     }
   }

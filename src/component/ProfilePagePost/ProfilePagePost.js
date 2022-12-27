@@ -8,14 +8,14 @@ import {useNavigate} from "react-router-dom";
 import "./ProfilePagePost.scss"
 import CreateModal from "../CreateModal/CreateModal";
 
-const ProfilePagePost=({likes,photoLink,postId,profilePostContent,timestamp,likedUser,username})=>{
+const ProfilePagePost=({likes,photoLink,postId,profilePostContent,timestamp,likedUser,author})=>{
 
     const navigate = useNavigate();
 
     const [modalShow,setModalShow]=useState(false)
 
     const handleClick=()=>{
-        navigate(`/${username}/${postId}`)
+        navigate(`/${author}/${postId}`)
         setModalShow(true)
     }
 
@@ -24,7 +24,7 @@ const ProfilePagePost=({likes,photoLink,postId,profilePostContent,timestamp,like
         <CreateModal modalShow={modalShow} 
         path="profile" 
         onClose={()=>setModalShow(false)} 
-        username={username} 
+        username={author} 
         profilePhotoLink={photoLink} 
         profilePostContent={profilePostContent} 
         timestamp={timestamp} 
