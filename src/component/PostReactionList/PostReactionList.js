@@ -15,9 +15,11 @@ const PostReactionList=({profilePostContent,timestamp,author,postId,likedUser})=
 
     const dispatch = useDispatch();
 
-    const { token,username } = useSelector(
+    const { user } = useSelector(
         (state) => state.auth
     )
+
+    const username=user.username
 
     const checkLikedUser=()=>{
         if (likedUser.length>0){
@@ -80,6 +82,10 @@ const PostReactionList=({profilePostContent,timestamp,author,postId,likedUser})=
                     &nbsp;{profilePostContent}
                 </div>
                 <div className="post-comments">
+                    <span>
+                        Hello!
+                    </span>
+                    &nbsp;It's me
                 </div>
                 <small className="time-stamp">
                     {dayjs(timestamp).fromNow()}

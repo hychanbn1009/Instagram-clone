@@ -39,7 +39,12 @@ const ProfilePage=()=>{
     },[dispatch,currentUser])
 
     const checkUserinFollowingList=()=>{
-        return profileUser[0].followers.find(obj=>obj.username===user.username)
+        if (profileUser && profileUser[0].followers.length>0){
+            return profileUser[0].followers.find(obj=>obj.username===user.username)
+        }
+        else{
+            return 0
+        }
     }
 
     const onClickFollow=async()=>{

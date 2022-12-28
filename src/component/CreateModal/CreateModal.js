@@ -40,6 +40,7 @@ const CreateModal =({modalShow,onClose,path,username,profilePhotoLink,profilePos
             }
         }
         if (path === "profile"){
+            {console.log(username)}
             return <PostModal profilePhotoLink={profilePhotoLink} username={username} profilePostContent={profilePostContent} timestamp={timestamp} postId={postId} likedUser={likedUser}/>
         }
     }

@@ -113,3 +113,15 @@ export const unfollowUser = createAsyncThunk(
     }
   }
 )
+
+export const createComment = createAsyncThunk(
+  'post/createComment',
+  async ({authorId,postId,commentContent},thunkAPI)=>{
+    try{
+      const response = await backendApi.post(`/createComment`,{authorId,postId,commentContent});
+      return response;
+    } catch(err){
+      return 'Something went wrong with follow'
+    }
+  }
+)

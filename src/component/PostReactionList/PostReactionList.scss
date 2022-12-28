@@ -16,6 +16,7 @@
     img {
       padding: 8px 8px 0 0;
       margin-bottom: 8px;
+      cursor: pointer;
     }
   }
   .post-like-list {
@@ -33,7 +34,8 @@
       font-weight: 600;
     }
   }
-  .post-content {
+  .post-content,
+  .post-comments {
     text-align: start;
     overflow-wrap: break-word;
     margin-bottom: 8px;
@@ -71,12 +73,10 @@
       background: none;
       font-size: 14px;
       font-weight: 600;
+      cursor: pointer;
     }
     button:disabled {
       opacity: 0.3;
-    }
-    button:hover {
-      opacity: 1;
     }
   }
 }

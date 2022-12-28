@@ -11,6 +11,7 @@ import icon from "../../assets/images/icon.jpg"
 import instagram_logo from "../../assets/images/sidebar/instragram_logo.svg";
 import CreateModal from "../CreateModal/CreateModal";
 import DropUpMenu from "../DropUpMenu/DropUpMenu";
+import SearchSidebar from "../SearchSidebar/SearchSidebar";
 import "./sidebar.scss"
 import {Link} from "react-router-dom";
 import { useSelector } from 'react-redux';
@@ -19,6 +20,7 @@ const Sidebar =()=>{
 
     const [modalShow,setModalShow]=useState(false)
     const [dropUpMenuShow,setDropUpMenuShow]=useState(false)
+    const [searchSidebarShow,setSearchSidebarShow]=useState(false)
 
     const {user} = useSelector(
         (state) => state.auth
@@ -27,13 +29,13 @@ const Sidebar =()=>{
     return(
         <>
         <CreateModal modalShow={modalShow} path="create" onClose={()=>setModalShow(false)} />
-        <div className="sideBar">
+        <div className={"sideBar "+searchSidebarShow}>
             <ul className="logo">
             <Link to="/"><li><img src={instagram_word} className="App-word" alt="instagram"/><img src={instagram_logo} className="App-logo" alt="instagram"/></li></Link>
             </ul>
             <ul className="menu">
                 <Link to="/"><li><img src={home} className="side-bar-icon" alt="home"/><span className="side-bar-span">Home</span></li></Link>
-                <li><img src={search} className="side-bar-icon" alt="search"/><span className="side-bar-span">Search</span></li>
+                <li onClick={()=>setSearchSidebarShow(!searchSidebarShow)}><img src={search} className="side-bar-icon" alt="search"/><span className="side-bar-span">Search</span></li>
                 <Link to="/explore"><li><img src={explore} className="side-bar-icon" alt="explore"/><span className="side-bar-span">Explore</span></li></Link>
                 <Link to="/direct/inbox"><li><img src={messages} className="side-bar-icon" alt="messages"/><span className="side-bar-span">Messages</span></li></Link>
                 <li><img src={notifications} className="side-bar-icon" alt="notifications"/><span className="side-bar-span">Notifications</span></li>
@@ -45,6 +47,7 @@ const Sidebar =()=>{
                 <li onClick={()=>setDropUpMenuShow(!dropUpMenuShow)}><img src={more} className="side-bar-icon" alt="more"/><span className="side-bar-span">More</span></li>
             </ul>
         </div> 
+        <SearchSidebar searchSidebarShow={searchSidebarShow}/>
         </>
     )
 }

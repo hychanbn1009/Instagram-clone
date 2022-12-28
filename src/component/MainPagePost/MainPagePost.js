@@ -1,22 +1,35 @@
-import React from "react";
+import React,{useState} from "react";
 import icon from "../../assets/images/icon.jpg";
 import dotdotdot from "../../assets/images/post/dotdotdot.svg";
-import like from "../../assets/images/post/like.svg";
-import forward from "../../assets/images/post/forward.svg";
-import comment from "../../assets/images/post/comment.svg";
-import save from "../../assets/images/post/save.svg";
 import emotion from "../../assets/images/post/emotion.svg";
-import post1 from "../../assets/images/post/post1.jpg";
 import dayjs from "dayjs";
 import "./mainPagePost.scss"
 import { useNavigate } from "react-router-dom";
-import PostReactionList from "../PostReactionList/PostReactionList"
+import { useSelector, useDispatch } from 'react-redux';
+import PostReactionList from "../PostReactionList/PostReactionList";
+import {createComment} from '../../thunk/postThunk';
 const relativeTime = require('dayjs/plugin/relativeTime');
 
 const Post =({author,photoLink,postContent,timestamp,postId,likedUser})=>{
 
     dayjs.extend(relativeTime)
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const {user} = useSelector(
+        (state) => state.auth
+    )
+
+    const [commentContent,setCommentContent]=useState("")
+
+    const submitComment=async()=>{
+        try{
+            const authorId = user.id
+            dispatch(createComment({commentContent,authorId,postId}))
+        }catch(err){
+            console.log(err)
+        }
+    }
 
     return(
         <div className="post">
@@ -41,9 +54,11 @@ const Post =({author,photoLink,postContent,timestamp,postId,likedUser})=>{
                 <div className="post-reaction-container">
                     <div className="post-reaction-left">
                         <img src={emotion} alt="emotion"/>
-                        <textarea placeholder="Add a comment..."></textarea>
+                        <textarea placeholder="Add a comment..." value={commentContent} onChange={(event)=>setCommentContent(event.target.value)}></textarea>
                     </div>
-                    <button disabled>Post</button>
+                    <button 
+                    disabled={commentContent?false:true}
+                    onClick={()=>submitComment()}>Post</button>
                 </div>
             </div>
         </div>
