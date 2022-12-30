@@ -14,17 +14,24 @@ import DropUpMenu from "../DropUpMenu/DropUpMenu";
 import SearchSidebar from "../SearchSidebar/SearchSidebar";
 import "./sidebar.scss"
 import {Link} from "react-router-dom";
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearSearchState } from "../../features/searchSlice";
 
 const Sidebar =()=>{
 
     const [modalShow,setModalShow]=useState(false)
     const [dropUpMenuShow,setDropUpMenuShow]=useState(false)
     const [searchSidebarShow,setSearchSidebarShow]=useState(false)
+    const dispatch = useDispatch();
 
     const {user} = useSelector(
         (state) => state.auth
     )
+
+    const onCloseSearchSidebar=()=>{
+        dispatch(clearSearchState())
+        setSearchSidebarShow(false)
+    }
 
     return(
         <>
@@ -47,7 +54,7 @@ const Sidebar =()=>{
                 <li onClick={()=>setDropUpMenuShow(!dropUpMenuShow)}><img src={more} className="side-bar-icon" alt="more"/><span className="side-bar-span">More</span></li>
             </ul>
         </div> 
-        <SearchSidebar searchSidebarShow={searchSidebarShow} setSearchSidebarShow={setSearchSidebarShow}/>
+        <SearchSidebar searchSidebarShow={searchSidebarShow} onCloseSearchSidebar={onCloseSearchSidebar}/>
         </>
     )
 }
