@@ -47,7 +47,7 @@ const Sidebar =()=>{
                 <li onClick={()=>setDropUpMenuShow(!dropUpMenuShow)}><img src={more} className="side-bar-icon" alt="more"/><span className="side-bar-span">More</span></li>
             </ul>
         </div> 
-        <SearchSidebar searchSidebarShow={searchSidebarShow}/>
+        <SearchSidebar searchSidebarShow={searchSidebarShow} setSearchSidebarShow={setSearchSidebarShow}/>
         </>
     )
 }
