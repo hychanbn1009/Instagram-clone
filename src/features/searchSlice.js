@@ -23,6 +23,9 @@ const searchSlice  = createSlice({
   extraReducers:{
     [searchUserList.fulfilled]: (state, action) => {
         console.log(action.payload)
+        state.loading = false
+        state.error = null
+        state.success = true
         state.searchedUserList = action.payload.data.searchedUserList;
     },
     [searchUserList.pending]: (state, action) => {
