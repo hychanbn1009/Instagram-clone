@@ -41,17 +41,17 @@ const Sidebar =()=>{
             <Link to="/"><li><img src={instagram_word} className="App-word" alt="instagram"/><img src={instagram_logo} className="App-logo" alt="instagram"/></li></Link>
             </ul>
             <ul className="menu">
-                <Link to="/"><li><img src={home} className="side-bar-icon" alt="home"/><span className="side-bar-span">Home</span></li></Link>
-                <li onClick={()=>setSearchSidebarShow(!searchSidebarShow)}><img src={search} className="side-bar-icon" alt="search"/><span className="side-bar-span">Search</span></li>
-                <Link to="/explore"><li><img src={explore} className="side-bar-icon" alt="explore"/><span className="side-bar-span">Explore</span></li></Link>
-                <Link to="/direct/inbox"><li><img src={messages} className="side-bar-icon" alt="messages"/><span className="side-bar-span">Messages</span></li></Link>
-                <li><img src={notifications} className="side-bar-icon" alt="notifications"/><span className="side-bar-span">Notifications</span></li>
-                <li onClick={()=>setModalShow(true)}><img src={create} className="side-bar-icon" alt="create"/><span className="side-bar-span">Create</span></li>
-                <Link to={`/${user.username}`}><li><img src={icon} className="profile-icon" alt="icon"/><span className="side-bar-span">Profile</span></li></Link>
+                <Link to="/"><li className="side-bar-li"><img src={home} className="side-bar-icon" alt="home"/><span className="side-bar-span">Home</span></li></Link>
+                <li onClick={()=>setSearchSidebarShow(!searchSidebarShow)} className="side-bar-li"><img src={search} className="side-bar-icon" alt="search"/><span className="side-bar-span">Search</span></li>
+                <Link to="/explore"><li className="side-bar-li"><img src={explore} className="side-bar-icon" alt="explore"/><span className="side-bar-span">Explore</span></li></Link>
+                <Link to="/direct/inbox"><li className="side-bar-li"><img src={messages} className="side-bar-icon" alt="messages"/><span className="side-bar-span">Messages</span></li></Link>
+                <li className="side-bar-li"><img src={notifications} className="side-bar-icon" alt="notifications"/><span className="side-bar-span">Notifications</span></li>
+                <li onClick={()=>setModalShow(true)} className="side-bar-li"><img src={create} className="side-bar-icon" alt="create"/><span className="side-bar-span">Create</span></li>
+                <Link to={`/${user.username}`}><li className="side-bar-li"><img src={icon} className="profile-icon" alt="icon"/><span className="side-bar-span">Profile</span></li></Link>
             </ul>
             <ul>
                 <DropUpMenu dropUpMenuShow={dropUpMenuShow}/>
-                <li onClick={()=>setDropUpMenuShow(!dropUpMenuShow)}><img src={more} className="side-bar-icon" alt="more"/><span className="side-bar-span">More</span></li>
+                <li onClick={()=>setDropUpMenuShow(!dropUpMenuShow)} className="side-bar-li"><img src={more} className="side-bar-icon" alt="more"/><span className="side-bar-span">More</span></li>
             </ul>
         </div> 
         <SearchSidebar searchSidebarShow={searchSidebarShow} onCloseSearchSidebar={onCloseSearchSidebar}/>
