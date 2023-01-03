@@ -47,7 +47,9 @@ const MessagesPage=()=>{
                                     <img src={icon} className="user-icon"/>
                                     <div className="friend-detail-container">
                                         <p className="username">{friend.username}</p>
-                                        <div className="friend-message"><span>{friend.username}</span><span>·</span><span>timestamp</span></div>
+                                        {/* <div className="friend-message">
+                                            <span>{friend.username}</span><span>·</span><span>timestamp</span>
+                                        </div> */}
                                     </div>
                                 </li>)
                             )}

@@ -1,7 +1,6 @@
 .chatroom-container {
   display: flex;
   flex-direction: column;
-  min-height: 897px;
   width: 100%;
   background-color: rgb(255, 255, 255);
   .chatroom-header-container {
@@ -17,7 +16,7 @@
     flex-direction: column-reverse;
     padding: 0 20px;
     overflow-y: scroll;
-    max-height: 597px;
+    height: 80vh;
   }
   .chatroom-footer-container {
     padding: 20px;
@@ -45,8 +44,10 @@
     display: flex;
     font-size: 14px;
     min-height: 44px;
-    margin: 4px 0;
     max-width: 236px;
+    flex-direction: column;
+    justify-content: center;
+    margin: 8px 0;
     &#friend {
       align-self: flex-start;
     }
@@ -58,6 +59,7 @@
     border: 1px solid rgb(239, 239, 239);
     border-radius: 25px;
     padding: 16px;
+    text-align: center;
     &#friend {
       background-color: rgb(255, 255, 255);
     }

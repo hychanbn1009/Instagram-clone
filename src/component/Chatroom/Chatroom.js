@@ -1,9 +1,8 @@
-import React,{ useEffect, useState } from "react";
+import React,{ useEffect, useState,useRef } from "react";
 import icon from "../../assets/images/icon.jpg";
 import sendIcon from "../../assets/images/chatroom/send.svg";
-import { useSelector,useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { clearMessageState } from "../../features/messageSlice";
-import {getMessageHistory} from "../../thunk/messageThunk"
 import "./Chatroom.scss";
 import { io } from "socket.io-client";
 
@@ -13,21 +12,14 @@ const Chatroom =({targetFriend,room})=>{
 
     const [sendMessage,setSendMessage]=useState("")
     const [localmessageHistory,setLocalMessageHistory]=useState([]);
-    const dispatch = useDispatch();
+    const [textAreaHeight,setTextAreaHeight]=useState(1)
+    const textAreaRef = useRef(null);
 
     const {user} = useSelector(
         (state) => state.auth
     )
 
-    const {messageHistory} = useSelector(
-        (state) => state.message
-    )
-
     useEffect(()=>{
-        // socket.on("connect",()=>{
-        //     console.log(`You connected with id ${socket.id}`)
-            
-        // })
         socket.emit("join-room",room)
         clearMessageState()
         socket.on("get-chat-history",history=>{
@@ -71,6 +63,16 @@ const Chatroom =({targetFriend,room})=>{
         setSendMessage("")
     }
 
+    const handleTextareaChange=(event)=>{ 
+        setSendMessage(event.target.value)
+        let currentHeight= (textAreaRef.current.scrollHeight-33)/17+1
+        if (currentHeight<6){
+            setTextAreaHeight(currentHeight)
+        }else{
+            setTextAreaHeight(6)
+        }
+    } 
+
     return(
         <div className="chatroom-container">
             <header className="chatroom-header-container">
@@ -87,9 +89,10 @@ const Chatroom =({targetFriend,room})=>{
                     <textarea 
                     className="message-input-field" 
                     placeholder="Message"
-                    rows="6"
+                    rows={textAreaHeight}
                     value={sendMessage}
-                    onChange={(event)=>setSendMessage(event.target.value)}/>
+                    ref={textAreaRef}
+                    onChange={(event)=>handleTextareaChange(event)}/>
                     <img src={sendIcon} className="send-icon" alt="send-button" onClick={()=>submitMessage()}/>
                 </div>
             </footer>

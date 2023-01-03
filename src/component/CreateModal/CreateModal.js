@@ -39,7 +39,7 @@ const CreateModal =({modalShow,onClose,path,username,profilePhotoLink,profilePos
                     break;
             }
         }
-        if (path === "profile"){
+        if (path === "profile" || path === "explore"){
             {console.log(username)}
             return <PostModal profilePhotoLink={profilePhotoLink} username={username} profilePostContent={profilePostContent} timestamp={timestamp} postId={postId} likedUser={likedUser}/>
         }
@@ -54,6 +54,10 @@ const CreateModal =({modalShow,onClose,path,username,profilePhotoLink,profilePos
         }
         if (path === "profile"){
             navigate(`/${username}`)
+            onClose()
+        }
+        if (path === "explore"){
+            navigate(`/explore`)
             onClose()
         }
     }

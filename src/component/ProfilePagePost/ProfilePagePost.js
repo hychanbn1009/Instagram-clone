@@ -20,7 +20,7 @@ const ProfilePagePost=({likes,photoLink,postId,profilePostContent,timestamp,like
     }
 
     return(
-        <>
+        <div className="profile-page-post">
         <CreateModal modalShow={modalShow} 
         path="profile" 
         onClose={()=>setModalShow(false)} 
@@ -38,7 +38,7 @@ const ProfilePagePost=({likes,photoLink,postId,profilePostContent,timestamp,like
                 <span><img src={comment}/>12</span>
             </div>
         </div>
-        </>
+        </div>
 
     )
 }
