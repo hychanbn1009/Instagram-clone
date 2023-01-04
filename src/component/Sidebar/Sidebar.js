@@ -9,6 +9,7 @@ import create from "../../assets/images/sidebar/create.svg";
 import more from "../../assets/images/sidebar/more.svg";
 import icon from "../../assets/images/icon.jpg"
 import instagram_logo from "../../assets/images/sidebar/instragram_logo.svg";
+import logoutIcon from "../../assets/images/sidebar/logout.svg";
 import CreateModal from "../CreateModal/CreateModal";
 import DropUpMenu from "../DropUpMenu/DropUpMenu";
 import SearchSidebar from "../SearchSidebar/SearchSidebar";
@@ -16,6 +17,7 @@ import "./sidebar.scss"
 import {Link} from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { clearSearchState } from "../../features/searchSlice";
+import { logout } from "../../features/authSlice";
 
 const Sidebar =()=>{
 
@@ -49,8 +51,11 @@ const Sidebar =()=>{
                 <li onClick={()=>setModalShow(true)} className="side-bar-li"><img src={create} className="side-bar-icon" alt="create"/><span className="side-bar-span">Create</span></li>
                 <Link to={`/${user.username}`}><li className="side-bar-li"><img src={icon} className="profile-icon" alt="icon"/><span className="side-bar-span">Profile</span></li></Link>
             </ul>
-            <ul>
-                <DropUpMenu dropUpMenuShow={dropUpMenuShow}/>
+            <ul className="more-menu">
+                {dropUpMenuShow?
+                <li onClick={()=>dispatch(logout())} className={dropUpMenuShow?"side-bar-li isOpen":"side-bar-li isClose"}><img src={logoutIcon} className="side-bar-icon" alt="logout"/><span className="side-bar-span">Log Out</span></li>:
+                null
+                }        
                 <li onClick={()=>setDropUpMenuShow(!dropUpMenuShow)} className="side-bar-li"><img src={more} className="side-bar-icon" alt="more"/><span className="side-bar-span">More</span></li>
             </ul>
         </div> 

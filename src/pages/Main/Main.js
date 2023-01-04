@@ -6,9 +6,12 @@ import ExplorePage from "../ExplorePage/ExplorePage";
 import MessagesPage from "../MessagesPage/MessagesPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
 import LoginPage from "../LoginPage/LoginPage";
+import TopNavbar from "../../component/TopNavbar/TopNavbar";
 import "./Main.scss";
 import {Routes, Route} from "react-router-dom";
 import { useSelector } from 'react-redux';
+import BottomNavbar from "../../component/BottomNavbar/BottomNavbar";
+import SearchSidebar from "../../component/SearchSidebar/SearchSidebar";
 
 const Main =()=>{
 
@@ -27,7 +30,12 @@ const Main =()=>{
 
     return(
         <div class="main-container"> 
-            {token?<Sidebar/>:null}
+            {token?
+            <>
+            <Sidebar className="sidebar"/>
+            <TopNavbar className="navbar"/>
+            </>
+            :null}
             {useAuth()}
             <div className="content-container">
                 {token?
@@ -40,6 +48,7 @@ const Main =()=>{
                     <Route path="/profile" element={<ProfilePage username={user.username}/>} />
                     <Route path="/:username" element={<ProfilePage/>}/>
                     <Route path="/:username/:postId" element={<ProfilePage/>}/>
+                    {/* <Route path="/search" element={<SearchSidebar searchSidebarShow={true}/>}/> */}
                     <Route path="/direct/inbox/:userId:friendId" element={<MessagesPage/>}/>
                 </Routes>
                 :
@@ -50,6 +59,7 @@ const Main =()=>{
                 </Routes>
                 }
             </div>
+            {token?<BottomNavbar className="navbar"/>:null}
         </div>
     )
 }

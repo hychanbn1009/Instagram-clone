@@ -24,10 +24,10 @@
     z-index: 2;
     opacity: 1;
     &.isOpen {
-      animation: fade-in 0.5s forwards;
+      animation: searchsidebar-fade-in 0.5s forwards;
     }
     &.isClose {
-      animation: fade-out 0.5s forwards;
+      animation: searchsidebar-fade-out 0.5s forwards;
     }
 
     .search-sidebar-content {
@@ -196,7 +196,7 @@
       }
     }
 
-    @keyframes fade-in {
+    @keyframes searchsidebar-fade-in {
       0% {
         opacity: 0;
         width: 0;
@@ -207,7 +207,7 @@
         width: 397px;
       }
     }
-    @keyframes fade-out {
+    @keyframes searchsidebar-fade-out {
       0% {
         opacity: 1;
         width: 397px;

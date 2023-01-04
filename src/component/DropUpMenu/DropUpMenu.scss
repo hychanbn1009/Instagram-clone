@@ -1,11 +1,4 @@
 .drop-up-menu {
-  width: 100%;
-  &.isOpen {
-    animation: fade-in 0.5s forwards;
-  }
-  &.isClose {
-    animation: fade-out 0.5s forwards;
-  }
   ul {
     list-style: none;
     li {
@@ -14,14 +7,26 @@
   }
   .logout-icon {
     height: 24px;
+    width: auto;
   }
   .dropupmenu-span {
     padding-left: 16px;
+  }
+  .drop-up-menu-content {
+    li {
+      display: block;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+    }
   }
 
   @media only screen and (max-width: 1200px) {
     .dropupmenu-span {
       display: none;
+    }
+    .drop-up-menu-content {
+      width: 24px;
     }
     .logout-icon {
       height: 24px;

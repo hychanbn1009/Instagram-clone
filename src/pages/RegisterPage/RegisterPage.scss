@@ -56,6 +56,9 @@
         margin: 0;
         text-align: start;
         text-overflow: ellipsis;
+        &:focus {
+          outline-style: none;
+        }
       }
       input:focus ~ span,
       input:not(:placeholder-shown) ~ span {

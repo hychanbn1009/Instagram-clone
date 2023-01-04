@@ -2,11 +2,27 @@
   background-color: rgb(250, 250, 250);
   display: flex;
   flex-direction: row;
-}
-
-.content-container {
-  display: flex;
-  flex-direction: row;
-  flex-grow: 1;
-  justify-content: center;
+  .content-container {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    justify-content: center;
+  }
+  .navbar {
+    display: none;
+  }
+  @media only screen and (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+    margin-top: 66px;
+    .content-container {
+      width: 100vw;
+    }
+    .navbar {
+      display: flex;
+    }
+    .sidebar {
+      display: none;
+    }
+  }
 }

@@ -1,16 +1,11 @@
-import React,{useEffect} from "react";
+import React from "react";
 import "./DropUpMenu.scss";
 import logoutIcon from "../../assets/images/sidebar/logout.svg";
-import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { logout } from "../../features/authSlice";
 
 const DropUpMenu =({dropUpMenuShow})=>{
 
-    const { loading, error,token } = useSelector(
-        (state) => state.auth
-    )
-    const navigate = useNavigate()
     const dispatch = useDispatch();
 
     if (!dropUpMenuShow){
@@ -26,4 +21,4 @@ const DropUpMenu =({dropUpMenuShow})=>{
     )
 }
 
-export default DropUpMenu;
+// export default DropUpMenu;
