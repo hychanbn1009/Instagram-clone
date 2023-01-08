@@ -6,7 +6,7 @@ import { clearMessageState } from "../../features/messageSlice";
 import "./Chatroom.scss";
 import { io } from "socket.io-client";
 
-const socket = io("http://localhost:4000/")
+const socket = io("https://instagram-clone-api-9z9w.onrender.com/")
 
 const Chatroom =({targetFriend,room})=>{
 

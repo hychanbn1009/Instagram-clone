@@ -59,7 +59,7 @@ const Main =()=>{
                 </Routes>
                 }
             </div>
-            {token?<BottomNavbar className="navbar"/>:null}
+            {/* {token?<BottomNavbar className="navbar"/>:null} */}
         </div>
     )
 }

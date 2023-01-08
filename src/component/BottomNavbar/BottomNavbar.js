@@ -34,9 +34,9 @@ const BottomNavbar =()=>{
             <ul className="menu">
                 <li className="bottom-navbar-li"><Link to="/"><img src={home} className="side-bar-icon" alt="home"/></Link></li>
                 <li className="bottom-navbar-li"><Link to="/explore"><img src={explore} className="side-bar-icon" alt="explore"/></Link></li>
-                <li className="bottom-navbar-li"><Link to="/direct/inbox"><img src={messages} className="bottom-navbar-icon" alt="messages"/></Link></li>
                 {/* <li className="bottom-navbar-li"><img src={notifications} className="side-bar-icon" alt="notifications"/></li> */}
                 <li onClick={()=>setModalShow(true)} className="bottom-navbar-li"><img src={create} className="side-bar-icon" alt="create"/></li>
+                <li className="bottom-navbar-li"><Link to="/direct/inbox"><img src={messages} className="bottom-navbar-icon" alt="messages"/></Link></li>
                 <li className="bottom-navbar-li"><Link to={`/${user.username}`}><img src={icon} className="profile-icon" alt="icon"/></Link></li>
             </ul>
         </div> 
