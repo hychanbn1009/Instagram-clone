@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL:"https://instagram-clone-api-9z9w.onrender.com/"
+    baseURL:process.env.REACT_APP_BACKEND_URL
 });
 
 // Add a request interceptor

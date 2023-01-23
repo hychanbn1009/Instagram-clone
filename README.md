@@ -3,7 +3,7 @@ Instagram clone website created by MERN stack with SocketIO
 
 ## Live demo
 
-[To be released]()
+[Live Demo](https://hychanbn1009.github.io/Instagram-clone/)
 
 ## Technologies
 
@@ -24,3 +24,14 @@ Instagram clone website created by MERN stack with SocketIO
 - mongoose
 - MongoDB
 - SocketIO
+
+### Features
+    Json web token and bcrypt authentication for Log in & Register
+    Create/Delete post
+    Like/Unlike post
+    SocketIO for real time chat app 
+    React Router dom for navbar 
+
+### Backend:
+
+    Repo: https://instagram-clone-api-9z9w.onrender.com

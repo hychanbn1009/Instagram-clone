@@ -4,6 +4,7 @@ import dotdotdot from "../../assets/images/post/dotdotdot.svg"
 import friendsSuggestion from "../../assets/images/profilePage/friendSuggestion.svg"
 import ProfilePagePost from "../../component/ProfilePagePost/ProfilePagePost";
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from "react-router-dom";
 import {profile,followUser,unfollowUser} from '../../thunk/postThunk';
 import {updateUser} from "../../thunk/authThunk"
 import {useLocation} from 'react-router-dom';
@@ -14,7 +15,7 @@ const ProfilePage=()=>{
 
     const dispatch = useDispatch();
     // const [currentUser,setCurrentUser]=useState(null);
-
+    const navigate = useNavigate();
     const location = useLocation();
     const currentUser=(location.pathname.split("/")[1])
 
@@ -81,7 +82,7 @@ const ProfilePage=()=>{
                         <div className="profile-reaction">
                             <h2 className="userid">{currentUser}</h2>
                             {user.username===currentUser?
-                            null
+                            <button className="edit-button" onClick={()=>navigate(`/accounts/edit`)}>Edit Profile</button>
                             :
                             <>
                                 {checkUserinFollowingList()?

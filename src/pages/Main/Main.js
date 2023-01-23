@@ -7,6 +7,7 @@ import MessagesPage from "../MessagesPage/MessagesPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
 import LoginPage from "../LoginPage/LoginPage";
 import TopNavbar from "../../component/TopNavbar/TopNavbar";
+import EditProfilePage from "../EditProfilePage/EditProfilePage";
 import "./Main.scss";
 import {Routes, Route} from "react-router-dom";
 import { useSelector } from 'react-redux';
@@ -48,6 +49,7 @@ const Main =()=>{
                     <Route path="/profile" element={<ProfilePage username={user.username}/>} />
                     <Route path="/:username" element={<ProfilePage/>}/>
                     <Route path="/:username/:postId" element={<ProfilePage/>}/>
+                    <Route path="/accounts/edit" element={<EditProfilePage/>}/>
                     {/* <Route path="/search" element={<SearchSidebar searchSidebarShow={true}/>}/> */}
                     <Route path="/direct/inbox/:userId:friendId" element={<MessagesPage/>}/>
                 </Routes>

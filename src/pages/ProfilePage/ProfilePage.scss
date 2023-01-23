@@ -38,6 +38,12 @@
         margin-left: 8px;
         padding: 0;
       }
+      .edit-button{
+        border-style: none;
+        padding: 7px 16px;
+        margin-left: 20px;
+        cursor: pointer;
+      }
     }
     ul {
       display: flex;
@@ -45,7 +51,7 @@
       list-style: none;
       align-items: flex-start;
       padding: 0;
-      margin-bottom: 20px;
+      margin: 10px 0px;
       font-size: 17px;
       li {
         margin-right: 40px;
