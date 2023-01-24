@@ -24,7 +24,6 @@ const LoginPage=()=>{
         setErrorMessageShake(true)
         try{
             const response = dispatch(login({email,password}))
-            console.log(response)
             navigate("/")
         } catch(err){
             console.log(err)
@@ -34,6 +33,11 @@ const LoginPage=()=>{
     const navigateSignUp=()=>{
         navigate("/register")
         dispatch(clearState())
+    }
+
+    const autoFill=()=>{
+        setEmail("tester@gmail.com")
+        setPassword("123")
     }
     
     return(
@@ -67,10 +71,16 @@ const LoginPage=()=>{
                 </div>
                 {loading?
                 <span class="loader"></span>
-                :<button 
+                :<>
+                <button 
                 className="login-button"
                 type="submit"
-                >Log in</button>}
+                >Log in</button>
+                <button className="login-button" type="submit" onClick={()=>autoFill()}>
+                    Auto fill for testing
+                </button>
+                </>
+                }
                 <div className="break-line">
                     <div></div>
                     <p>OR</p>

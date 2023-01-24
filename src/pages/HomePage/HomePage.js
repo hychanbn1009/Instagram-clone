@@ -27,13 +27,15 @@ const HomePage=()=>{
 
     return(
         <>
+        {console.log(posts)}
             <div className="post-container">
                 <Storybar/>
-                
                 {posts?
-                posts.map((post)=>{
-                    return <MainPagePost postId={post._id} author={post.author.username} photoLink={post.photoLink} postContent={post.postContent} timestamp={post.timestamp} likedUser={post.likedUser}/>
-                }) 
+                    posts.length!==0?
+                    posts.map((post)=>{
+                        return <MainPagePost postId={post._id} author={post.author.username} photoLink={post.photoLink} postContent={post.postContent} timestamp={post.timestamp} likedUser={post.likedUser}/>
+                    }):
+                    <div>Oh! No one posted anything in here!</div>
                 :<div className="loader"></div>}
             </div>
             <SuggestList/>

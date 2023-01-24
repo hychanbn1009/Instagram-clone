@@ -40,10 +40,10 @@ const ProfilePage=()=>{
     },[dispatch,currentUser])
 
     const checkUserinFollowingList=()=>{
-        if (profileUser && profileUser[0].followers.length>0){
+        console.log(profileUser)
+        if(profileUser !== undefined && profileUser[0].followers !== undefined && profileUser[0].followers !== null){
             return profileUser[0].followers.find(obj=>obj.username===user.username)
-        }
-        else{
+        }else{
             return 0
         }
     }

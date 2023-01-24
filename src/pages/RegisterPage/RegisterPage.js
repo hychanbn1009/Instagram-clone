@@ -19,20 +19,36 @@ const RegisterPage=()=>{
     const [fullname,setFullname]=useState("");
     const [username,setUsername]=useState("");
     const [password,setPassword]=useState("");
+    const [localErrorMessage,setLocalErrorMessage]=useState(errorMessage);
     const [errorMessageShake,setErrorMessageShake]=useState(false);
+
+    const validateEmail = (email) => {
+        return String(email)
+          .toLowerCase()
+          .match(
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+          );
+    };
 
     const handleSubmit = async(event) => {
         dispatch(clearState())
         event.preventDefault();
-        setErrorMessageShake(true);
-        try{
-            const response = dispatch(register({email,fullname,username,password}))
-        } catch(err){
-            navigate("/register")
+        if(!validateEmail(email)){
+            setLocalErrorMessage("Email address is not correct.");
+            setErrorMessageShake(true);
+        }else{
+            setErrorMessageShake(true);
+            try{
+                const response = dispatch(register({email,fullname,username,password}))
+                navigate("/")
+            } catch(err){
+                navigate("/register")
+            }
         }
     };
 
     useEffect(()=>{
+        console.log(success)
         if(success){
             navigate("/")
         }
@@ -106,11 +122,11 @@ const RegisterPage=()=>{
                 className="login-button"
                 type="submit"
                 >Sign up</button>}
-                {errorMessage?<p
+                {localErrorMessage?<p
                 id={errorMessageShake?"shaking":null}
                 onAnimationEnd={()=>setErrorMessageShake(false)}
                 className="error-message"
-                >{errorMessage}</p>:null}
+                >{localErrorMessage}</p>:null}
                 <div className="login-container">
                     <p>Have an account?&nbsp;</p>
                     <a onClick={()=>navigate("/login")}>Log in</a>
