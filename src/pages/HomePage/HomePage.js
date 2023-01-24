@@ -8,7 +8,7 @@ import "./HomePage.scss";
 
 const HomePage=()=>{
 
-    const {posts} = useSelector(
+    const {posts,loading} = useSelector(
         (state) => state.post
     )
 
@@ -30,7 +30,7 @@ const HomePage=()=>{
         {console.log(posts)}
             <div className="post-container">
                 <Storybar/>
-                {posts?
+                {!loading?
                     posts.length!==0?
                     posts.map((post)=>{
                         return <MainPagePost postId={post._id} author={post.author.username} photoLink={post.photoLink} postContent={post.postContent} timestamp={post.timestamp} likedUser={post.likedUser}/>
