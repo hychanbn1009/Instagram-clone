@@ -32,6 +32,7 @@ const MessagesPage=()=>{
 
     return(
         <div className="messages-page">
+            {console.log(user)}
             <div className="messages-page-box-container">
                 <section className="contact-list-container">
                     <div className="personal-information-container">

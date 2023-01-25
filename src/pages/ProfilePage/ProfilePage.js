@@ -40,9 +40,13 @@ const ProfilePage=()=>{
     },[dispatch,currentUser])
 
     const checkUserinFollowingList=()=>{
-        console.log(profileUser)
-        if(profileUser !== undefined && profileUser[0].followers !== undefined && profileUser[0].followers !== null){
-            return profileUser[0].followers.find(obj=>obj.username===user.username)
+        if(profileUser=== null){
+            return 0
+        }
+        else if(profileUser !== undefined  && profileUser[0].followers !== null){
+            if(profileUser[0].followers.find(obj=>obj.username===user.username)){
+                return true
+            }
         }else{
             return 0
         }
@@ -51,8 +55,9 @@ const ProfilePage=()=>{
     const onClickFollow=async()=>{
         try{
             const [username,targetUser]=[user.username,currentUser]
-            dispatch(followUser({username,targetUser}))
-            dispatch(updateUser({username}))
+            dispatch(followUser({username,targetUser})).then(
+                dispatch(updateUser({username}))
+            )
         }catch(err){
             console.log(err)
         }
@@ -61,8 +66,9 @@ const ProfilePage=()=>{
     const onClickUnfollow=async()=>{
         try{
             const [username,targetUser]=[user.username,currentUser]
-            dispatch(unfollowUser({username,targetUser}))
-            dispatch(updateUser({username}))
+            dispatch(unfollowUser({username,targetUser})).then(
+                dispatch(updateUser({username}))
+            )
         }catch(err){
             console.log(err)
         }
@@ -85,6 +91,7 @@ const ProfilePage=()=>{
                             <button className="edit-button" onClick={()=>navigate(`/accounts/edit`)}>Edit Profile</button>
                             :
                             <>
+                            {checkUserinFollowingList()}
                                 {checkUserinFollowingList()?
                                 <button className="unfollow-button" onClick={()=>onClickUnfollow()}>Unfollow</button>
                                 :

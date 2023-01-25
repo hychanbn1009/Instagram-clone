@@ -22,6 +22,7 @@ const PostReactionList=({profilePostContent,timestamp,author,postId,likedUser})=
     const username=user.username
 
     const checkLikedUser=()=>{
+        console.log(likedUser[0].username)
         if (likedUser.length>0){
             return likedUser[0].username
         }else{
@@ -60,7 +61,7 @@ const PostReactionList=({profilePostContent,timestamp,author,postId,likedUser})=
                     <img src={save} alt="save"/>
                 </div>
                 <div className="post-like-list">
-                    {checkLikedUser()>0?
+                    {likedUser.length>0?
                         <>
                         <img src={icon} alt="icon"/>
                         &nbsp;Liked by&nbsp;

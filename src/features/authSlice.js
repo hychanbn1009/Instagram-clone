@@ -69,8 +69,8 @@ const authSlice  = createSlice({
       state.errorMessage = action.payload
     },
     [updateUser.fulfilled]: (state, action) => {
-      const user = action.payload.data.user[0];
-      state.user = user;
+      console.log(action.payload.data.user[0])
+      state.user = action.payload.data.user[0];
       state.loading = false;
       state.success = true;
     },

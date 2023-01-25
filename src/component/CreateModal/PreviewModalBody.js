@@ -11,9 +11,10 @@ const PreviewModalBody=({photoLink,setPhotoLink,step,setStep,postContent,setPost
         (state) => state.post
     )
 
-    const { token,username } = useSelector(
+    const { token,user } = useSelector(
         (state) => state.auth
     )
+    const username=user.username
 
     const dispatch = useDispatch();
 

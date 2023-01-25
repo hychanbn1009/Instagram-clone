@@ -4,6 +4,7 @@ import backendApi from "../api/backend";
 export const submit = createAsyncThunk(
     'post/submit',
     async ({ photoLink, postContent,username },thunkAPI)=>{
+      console.log(photoLink, postContent,username)
       try{
         const response = await backendApi.post('/create', {photoLink, postContent,username});
         return response;
