@@ -23,19 +23,18 @@ const Chatroom =({targetFriend,room})=>{
         socket.emit("join-room",room)
         clearMessageState()
         socket.on("get-chat-history",history=>{
-            console.log(history)
             let tempArray=[]
             history.forEach(message=>{
                 if (message.sender._id===user._id){       
                     tempArray.push(
-                    <div className="message-container" id="friend">
-                            <span className="message" id="friend">{message.messageContent}</span>
+                    <div className="message-container" id="user">
+                            <span className="message" id="user">{message.messageContent}</span>
                     </div>
                     )
                 }else{
                     tempArray.push(
-                        <div className="message-container" id="user">
-                            <span className="message" id="user">{message.messageContent}</span>
+                        <div className="message-container" id="friend">
+                            <span className="message" id="friend">{message.messageContent}</span>
                         </div>
                     )
                 }
@@ -44,8 +43,8 @@ const Chatroom =({targetFriend,room})=>{
         })
         const addNewMessage=(newMessage)=>{
             setLocalMessageHistory(prevArray=>[
-                <div className="message-container" id="friend">
-                    <span className="message" id="friend">{newMessage}</span>
+                <div className="message-container" id="user">
+                    <span className="message" id="user">{newMessage}</span>
                 </div> ,...prevArray
             ])
         }
